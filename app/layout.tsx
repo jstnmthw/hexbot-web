@@ -21,11 +21,7 @@ const NAV_LINKS = [
   },
 ];
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
@@ -34,12 +30,9 @@ export default function RootLayout({
             {/* ── Header: logo + inline nav ─────────────────────── */}
             <header className="w-full rounded-b-lg bg-nav border border-t-0 border-border border-b-border-darker shadow-[0_0_0_1px_#000000] overflow-hidden">
               <div className="flex w-full items-stretch">
-                <Link
-                  href="/"
-                  className="flex shrink-0 items-center px-4 text-foreground"
-                >
+                <Link href="/" className="flex shrink-0 items-center px-4 text-foreground">
                   <h1 className="m-0 text-[12px] font-bold leading-none tracking-wide">
-                    ⬡ HexBot
+                    ⬡ <span className="sr-only">HexBot</span>
                   </h1>
                 </Link>
                 <span className="nav-sep" />
@@ -48,19 +41,11 @@ export default function RootLayout({
                     <Fragment key={link.href}>
                       {i > 0 && <span className="nav-sep" />}
                       {link.external ? (
-                        <a
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex flex-1 items-center justify-center px-3 py-2 text-nav-foreground transition-colors hover:text-foreground"
-                        >
+                        <a href={link.href} target="_blank" rel="noopener noreferrer" className="flex flex-1 items-center justify-center px-3 py-2 text-nav-foreground transition-colors hover:text-foreground">
                           {link.label}
                         </a>
                       ) : (
-                        <Link
-                          href={link.href}
-                          className="flex flex-1 items-center justify-center px-3 py-2 text-nav-foreground transition-colors hover:text-foreground"
-                        >
+                        <Link href={link.href} className="flex flex-1 items-center justify-center px-3 py-2 text-nav-foreground transition-colors hover:text-foreground">
                           {link.label}
                         </Link>
                       )}
@@ -71,29 +56,19 @@ export default function RootLayout({
             </header>
 
             {/* ── Main content ──────────────────────────────────── */}
-            <main className="flex flex-1 flex-col items-center py-4">
-              {children}
-            </main>
+            <main className="flex flex-1 flex-col items-center py-4">{children}</main>
 
             {/* ── Footer ───────────────────────────────────────── */}
             <footer className="border-t border-border py-3 text-xs text-muted-foreground">
               <div className="flex gap-3">
-                <Link
-                  href="/privacy"
-                  className="transition-colors hover:text-foreground"
-                >
+                <Link href="/privacy" className="transition-colors hover:text-foreground">
                   Privacy
                 </Link>
-                <Link
-                  href="/contact"
-                  className="transition-colors hover:text-foreground"
-                >
+                <Link href="/contact" className="transition-colors hover:text-foreground">
                   Contact
                 </Link>
               </div>
-              <div className="mt-1">
-                Copyright &copy; HexBot 2026. All Rights Reserved.
-              </div>
+              <div className="mt-1">Copyright &copy; HexBot 2026. All Rights Reserved.</div>
             </footer>
           </div>
         </div>

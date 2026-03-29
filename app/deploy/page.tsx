@@ -1,9 +1,5 @@
 function CodeBlock({ children }: { children: React.ReactNode }) {
-  return (
-    <pre className="overflow-x-auto rounded border border-border bg-muted p-3 font-mono leading-relaxed text-foreground">
-      {children}
-    </pre>
-  );
+  return <pre className="overflow-x-auto rounded border border-border bg-muted p-3 font-mono leading-relaxed text-foreground">{children}</pre>;
 }
 
 const REPL_COMMANDS = [
@@ -24,33 +20,23 @@ export default function Deploy() {
     <div className="w-full max-w-170 space-y-10 py-2">
       <h2 className="text-foreground">Deploy HexBot</h2>
       <section className="space-y-2">
-        <h3 className="border-b border-border pb-1 text-foreground">
-          Requirements
-        </h3>
+        <h3 className="border-b border-border pb-1 text-foreground">Requirements</h3>
         <ul className="space-y-1 text-muted-foreground">
           <li>
-            <strong className="text-foreground">Node.js 24+</strong> (manual
-            install)
+            <strong className="text-foreground">Node.js 24+</strong> (manual install)
           </li>
           <li>
             <strong className="text-foreground">pnpm</strong> (manual install)
           </li>
           <li>
-            <strong className="text-foreground">Docker + Compose</strong>{" "}
-            (Docker install)
+            <strong className="text-foreground">Docker + Compose</strong> (Docker install)
           </li>
         </ul>
       </section>
 
       <section className="space-y-2">
-        <h3 className="border-b border-border pb-1 text-foreground">
-          Quick Start — Docker
-        </h3>
-        <p className="leading-relaxed text-muted-foreground">
-          The recommended deployment method. Plugins, config, and data are
-          mounted from the host so you can edit and reload without rebuilding
-          the image.
-        </p>
+        <h3 className="border-b border-border pb-1 text-foreground">Quick Start — Docker</h3>
+        <p className="leading-relaxed text-muted-foreground">The recommended deployment method. Plugins, config, and data are mounted from the host so you can edit and reload without rebuilding the image.</p>
         <CodeBlock>{`git clone https://github.com/jstnmthw/hexbot
 cd hexbot
 cp config/bot.example.json config/bot.json
@@ -59,16 +45,12 @@ cp config/plugins.example.json config/plugins.json
 docker compose up -d
 docker compose logs -f`}</CodeBlock>
         <p className="text-muted-foreground">
-          DCC CHAT ports{" "}
-          <strong className="text-neutral-400">49152-49171</strong> are exposed
-          by default.
+          DCC CHAT ports <strong className="text-neutral-400">49152-49171</strong> are exposed by default.
         </p>
       </section>
 
       <section className="space-y-2">
-        <h3 className="border-b border-border pb-1 text-foreground">
-          Manual Install
-        </h3>
+        <h3 className="border-b border-border pb-1 text-foreground">Manual Install</h3>
         <CodeBlock>{`git clone https://github.com/jstnmthw/hexbot
 cd hexbot
 pnpm install
@@ -80,21 +62,11 @@ pnpm dev            # development, with interactive REPL`}</CodeBlock>
       </section>
 
       <section className="space-y-2">
-        <h3 className="border-b border-border pb-1 text-foreground">
-          Configuration
-        </h3>
-        <p className="leading-relaxed text-muted-foreground">
-          Two JSON files control the bot. Both are ignored by git — only the
-          example files are committed.
-        </p>
+        <h3 className="border-b border-border pb-1 text-foreground">Configuration</h3>
+        <p className="leading-relaxed text-muted-foreground">Two JSON files control the bot. Both are ignored by git — only the example files are committed.</p>
         <div className="space-y-1">
-          <p className="text-sm font-semibold text-foreground">
-            config/bot.json
-          </p>
-          <p className="text-muted-foreground">
-            IRC server, credentials, owner hostmask, services (NickServ/SASL),
-            queue rate, DCC settings, SOCKS5 proxy, and logging level.
-          </p>
+          <p className="text-sm font-semibold text-foreground">config/bot.json</p>
+          <p className="text-muted-foreground">IRC server, credentials, owner hostmask, services (NickServ/SASL), queue rate, DCC settings, SOCKS5 proxy, and logging level.</p>
           <CodeBlock>{`{
   "irc": {
     "host": "irc.rizon.net",
@@ -110,13 +82,8 @@ pnpm dev            # development, with interactive REPL`}</CodeBlock>
 }`}</CodeBlock>
         </div>
         <div className="space-y-1">
-          <p className="text-sm font-semibold text-foreground">
-            config/plugins.json
-          </p>
-          <p className="text-muted-foreground">
-            Enable/disable plugins, set per-plugin channel scope, and override
-            plugin config defaults.
-          </p>
+          <p className="text-sm font-semibold text-foreground">config/plugins.json</p>
+          <p className="text-muted-foreground">Enable/disable plugins, set per-plugin channel scope, and override plugin config defaults.</p>
           <CodeBlock>{`{
   "chanmod": {
     "enabled": true,
@@ -139,24 +106,15 @@ pnpm dev            # development, with interactive REPL`}</CodeBlock>
       </section>
 
       <section className="space-y-2">
-        <h3 className="border-b border-border pb-1 text-foreground">
-          REPL Commands
-        </h3>
+        <h3 className="border-b border-border pb-1 text-foreground">REPL Commands</h3>
         <p className="text-muted-foreground">
-          Run with{" "}
-          <code className="rounded bg-muted px-1 font-mono text-foreground">
-            pnpm dev
-          </code>{" "}
-          to get an interactive REPL with owner-level access — no IRC auth
-          required.
+          Run with <code className="rounded bg-muted px-1 font-mono text-foreground">pnpm dev</code> to get an interactive REPL with owner-level access — no IRC auth required.
         </p>
         <table className="w-full">
           <tbody>
             {REPL_COMMANDS.map(({ cmd, desc }) => (
               <tr key={cmd} className="border-b border-border/40">
-                <td className="py-1 pr-4 font-mono text-foreground whitespace-nowrap">
-                  {cmd}
-                </td>
+                <td className="py-1 pr-4 font-mono text-foreground whitespace-nowrap">{cmd}</td>
                 <td className="py-1 text-muted-foreground">{desc}</td>
               </tr>
             ))}
@@ -165,12 +123,8 @@ pnpm dev            # development, with interactive REPL`}</CodeBlock>
       </section>
 
       <section className="space-y-2">
-        <h3 className="border-b border-border pb-1 text-foreground">
-          Hot-Reloading Plugins
-        </h3>
-        <p className="text-muted-foreground">
-          Edit a plugin file, then reload it without restarting the bot:
-        </p>
+        <h3 className="border-b border-border pb-1 text-foreground">Hot-Reloading Plugins</h3>
+        <p className="text-muted-foreground">Edit a plugin file, then reload it without restarting the bot:</p>
         <CodeBlock>{`# In IRC (requires +o or higher):
 !reload chanmod
 

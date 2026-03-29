@@ -3,7 +3,7 @@
 /* ===== Theme tokens — override :root to swap themes ===== */
 :root {
   /* Core */
-  --background: #131313;
+  --background: #161616;
   --foreground: #fafafa;
 
   /* Card / surface */
@@ -27,7 +27,7 @@
   --muted-foreground: #888888;
 
   /* Accent hover */
-  --accent: #262626;
+  --accent: #181818;
   --accent-foreground: #fafafa;
 
   /* Destructive */
@@ -38,7 +38,7 @@
   --border: #262626;
   --border-darker: #1a1a1a;
   --input: #1c1c1c;
-  --ring: #525252;
+  --ring: #444444;
 
   /* Nav bar */
   --nav: #0f0f0f;
