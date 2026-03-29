@@ -23,7 +23,6 @@ function Entry({
 export default function News() {
   return (
     <div className="w-full max-w-170 space-y-6 py-2">
-
       <Entry version="v0.1.0 — Initial Release" date="2026">
         <h2 className="text-foreground">News</h2>
         <p className="mb-3 leading-relaxed text-muted-foreground">
@@ -40,16 +39,18 @@ export default function News() {
             chanmod, flood, greeter, seen, topic, help, ctcp, 8ball
           </li>
           <li>
-            <strong className="text-foreground">Eggdrop-style bind system</strong> —
-            16 event types, pattern-matched handlers
+            <strong className="text-foreground">
+              Eggdrop-style bind system
+            </strong>{" "}
+            — 16 event types, pattern-matched handlers
           </li>
           <li>
-            <strong className="text-foreground">Flag-based permissions</strong> —
-            owner, master, op, voice; per-channel and global
+            <strong className="text-foreground">Flag-based permissions</strong>{" "}
+            — owner, master, op, voice; per-channel and global
           </li>
           <li>
-            <strong className="text-foreground">Hot-reload</strong> —
-            edit and reload plugins without restarting
+            <strong className="text-foreground">Hot-reload</strong> — edit and
+            reload plugins without restarting
           </li>
           <li>
             <strong className="text-foreground">SASL authentication</strong> —
@@ -60,8 +61,8 @@ export default function News() {
             extended-join, account-notify, chghost
           </li>
           <li>
-            <strong className="text-foreground">SOCKS5 proxy</strong> —
-            Tor and SSH tunnel support
+            <strong className="text-foreground">SOCKS5 proxy</strong> — Tor and
+            SSH tunnel support
           </li>
           <li>
             <strong className="text-foreground">DCC CHAT party line</strong> —
@@ -77,34 +78,38 @@ export default function News() {
           </li>
         </ul>
         <p className="text-muted-foreground">
-          See the <Link href="/deploy" className="text-foreground hover:underline">deploy guide</Link> to
-          get started, or browse the{" "}
-          <Link href="/plugins" className="text-foreground hover:underline">plugin list</Link> to
-          see what&apos;s included.
+          See the{" "}
+          <Link href="/deploy" className="text-foreground hover:underline">
+            deploy guide
+          </Link>{" "}
+          to get started, or browse the{" "}
+          <Link href="/plugins" className="text-foreground hover:underline">
+            plugin list
+          </Link>{" "}
+          to see what&apos;s included.
         </p>
       </Entry>
 
       <Entry version="Upcoming" date="Roadmap">
         <ul className="space-y-1 text-muted-foreground">
           <li>
-            <strong className="text-foreground">AI chat module</strong> —
-            Google Gemini integration with cost controls and prompt filtering
+            <strong className="text-foreground">AI chat module</strong> — Google
+            Gemini integration with cost controls and prompt filtering
           </li>
           <li>
             <strong className="text-foreground">Bot linking</strong> —
             coordinate multiple HexBot instances across servers
           </li>
           <li>
-            <strong className="text-foreground">XDCC</strong> —
-            file serving over DCC
+            <strong className="text-foreground">XDCC</strong> — file serving
+            over DCC
           </li>
           <li>
-            <strong className="text-foreground">IdleRPG</strong> —
-            idle-based RPG plugin
+            <strong className="text-foreground">IdleRPG</strong> — idle-based
+            RPG plugin
           </li>
         </ul>
       </Entry>
-
     </div>
   );
 }

@@ -14,7 +14,11 @@ const NAV_LINKS = [
   { href: "/plugins", label: "Plugins" },
   { href: "/deploy", label: "Deploy" },
   { href: "/news", label: "News" },
-  { href: "https://github.com/jstnmthw/hexbot", label: "GitHub", external: true },
+  {
+    href: "https://github.com/jstnmthw/hexbot",
+    label: "GitHub",
+    external: true,
+  },
 ];
 
 export default function RootLayout({
@@ -27,12 +31,16 @@ export default function RootLayout({
       <body>
         <div className="min-h-screen bg-background">
           <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4">
-
             {/* ── Header: logo + inline nav ─────────────────────── */}
             <header className="w-full rounded-b-lg bg-nav border border-t-0 border-border border-b-border-darker shadow-[0_0_0_1px_#000000] overflow-hidden">
               <div className="flex w-full items-stretch">
-                <Link href="/" className="flex shrink-0 items-center px-4 text-foreground">
-                  <h1 className="m-0 text-[12px] font-bold leading-none tracking-wide">⬡ HexBot</h1>
+                <Link
+                  href="/"
+                  className="flex shrink-0 items-center px-4 text-foreground"
+                >
+                  <h1 className="m-0 text-[12px] font-bold leading-none tracking-wide">
+                    ⬡ HexBot
+                  </h1>
                 </Link>
                 <span className="nav-sep" />
                 <nav className="flex flex-1 items-stretch">
@@ -70,12 +78,23 @@ export default function RootLayout({
             {/* ── Footer ───────────────────────────────────────── */}
             <footer className="border-t border-border py-3 text-xs text-muted-foreground">
               <div className="flex gap-3">
-                <Link href="/privacy" className="transition-colors hover:text-foreground">Privacy</Link>
-                <Link href="/contact" className="transition-colors hover:text-foreground">Contact</Link>
+                <Link
+                  href="/privacy"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Privacy
+                </Link>
+                <Link
+                  href="/contact"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Contact
+                </Link>
               </div>
-              <div className="mt-1">Copyright &copy; HexBot 2026. All Rights Reserved.</div>
+              <div className="mt-1">
+                Copyright &copy; HexBot 2026. All Rights Reserved.
+              </div>
             </footer>
-
           </div>
         </div>
       </body>
