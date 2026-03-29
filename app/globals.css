@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
+/* ===== Theme tokens — override :root to swap themes ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core */
+  --background: #131313;
+  --foreground: #fafafa;
+
+  /* Card / surface */
+  --card: #111111;
+  --card-foreground: #fafafa;
+
+  /* Popover */
+  --popover: #111111;
+  --popover-foreground: #fafafa;
+
+  /* Primary action */
+  --primary: #e5e5e5;
+  --primary-foreground: #0a0a0a;
+
+  /* Secondary surface */
+  --secondary: #1c1c1c;
+  --secondary-foreground: #a3a3a3;
+
+  /* Muted (subdued) */
+  --muted: #1c1c1c;
+  --muted-foreground: #888888;
+
+  /* Accent hover */
+  --accent: #262626;
+  --accent-foreground: #fafafa;
+
+  /* Destructive */
+  --destructive: #991b1b;
+  --destructive-foreground: #fafafa;
+
+  /* Borders / inputs */
+  --border: #262626;
+  --border-darker: #1a1a1a;
+  --input: #1c1c1c;
+  --ring: #525252;
+
+  /* Nav bar */
+  --nav: #0f0f0f;
+  --nav-foreground: #c0c0c0;
+
+  /* Sidebar */
+  --sidebar: #0f0f0f;
+  --sidebar-foreground: #a3a3a3;
+  --sidebar-border: #1c1c1c;
+
+  /* Shape */
+  --radius: 0.25rem;
 }
 
+/* ===== Font size scale — 12px base, all relative to 16px root rem ===== */
+/* Overrides Tailwind's default text-* utilities so text-base = 12px        */
+/* Layout/spacing utilities (p-, m-, max-w-, etc.) remain 16px-rem correct  */
+@theme {
+  --text-xs:   0.625rem;   /* 10px */
+  --text-sm:   0.6875rem;  /* 11px */
+  --text-base: 0.75rem;    /* 12px */
+  --text-lg:   0.8125rem;  /* 13px */
+  --text-xl:   0.875rem;   /* 14px */
+  --text-2xl:  1rem;       /* 16px */
+  --text-3xl:  1.125rem;   /* 18px */
+  --text-4xl:  1.25rem;    /* 20px */
+  --text-5xl:  1.5rem;     /* 24px */
+  --text-6xl:  1.875rem;   /* 30px */
+  --text-7xl:  2.25rem;    /* 36px */
+  --text-8xl:  3rem;       /* 48px */
+  --text-9xl:  4rem;       /* 64px */
+}
+
+/* ===== Tailwind v4 theme mapping ===== */
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-darker: var(--border-darker);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-nav: var(--nav);
+  --color-nav-foreground: var(--nav-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+
+  /* Font */
+  --font-sans: Verdana, Geneva, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===== Base ===== */
+html {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ===== Headings — in @layer base so utilities can override ===== */
+@layer base {
+  h1 { font-size: 16px; line-height: 1.3; font-weight: 600; }
+  h2 { font-size: 13px; line-height: 1.4; font-weight: 600; }
+  h3 { font-size: 12px; line-height: 1.4; font-weight: 600; }
+  h4 { font-size: 12px; line-height: 1.5; font-weight: 600; }
+  h5 { font-size: 11px; line-height: 1.5; font-weight: 600; }
+  h6 { font-size: 10px; line-height: 1.5; font-weight: 600; }
+}
+
+/* Beveled nav separator — dark shadow line + light highlight line */
+.nav-sep {
+  display: block;
+  align-self: stretch;
+  flex-shrink: 0;
+  width: 1px;
+  background-color: #000000;
+  box-shadow: 1px 0 0 0 #262626;
 }
