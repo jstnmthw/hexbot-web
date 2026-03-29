@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "HexBot: Extend Your Bot with Plugins",
+};
+
 function Cmd({ children }: { children: React.ReactNode }) {
   return <code className="rounded bg-muted px-1 font-mono text-xs text-foreground">{children}</code>;
 }

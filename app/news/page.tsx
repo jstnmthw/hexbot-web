@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "HexBot: Changelog & Latest Updates",
+};
 
 function Entry({ version, date, children }: { version: string; date: string; children: React.ReactNode }) {
   return (

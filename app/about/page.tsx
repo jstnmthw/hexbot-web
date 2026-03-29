@@ -1,16 +1,26 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "HexBot: What is HexBot?",
+};
+
 export default function About() {
   return (
     <div className="w-full max-w-170 space-y-6 py-2">
-      <section className="space-y-2">
+      <section className="space-y-4">
         <h2 className="text-foreground">About HexBot</h2>
         <p className="leading-relaxed text-muted-foreground">
-          HexBot is a modular <strong className="text-foreground">Internet Relay Chat</strong> bot for <strong className="text-foreground">Node.js</strong>, written in TypeScript. Inspired by decades-proven design patterns, HexBot brings that architecture to a modern stack — hot-reloadable plugins, type-safe APIs, and Docker-ready deployment.
+          At its peak in the early 2000s, <strong className="text-foreground">Internet Relay Chat</strong> had millions of daily users spread across networks like EFnet, Undernet, DALnet, and Quakenet — a federated mesh of servers that nobody owned, running a protocol that anyone could implement. Hackers, open-source developers, gamers, and underground communities all operated in real time, in plain text, across thousands of channels. It was the internet's town square, engine room, and back alley all at once.
+        </p>
+        <p className="leading-relaxed text-muted-foreground">Bots were an inevitability. Channels needed protection — flood attacks and takeover attempts were a daily reality on the early net, and human operators couldn't stay awake forever. So people automated them. A bot could hold ops, enforce channel modes, kick spammers, and reconnect after a netsplit without anyone lifting a finger. From there the use cases multiplied: DCC file servers seeding warez and MP3s to anyone who asked, trivia bots keeping quiet channels alive, seen bots tracking who was last online, dice rollers, quote databases, weather fetchers pulling data from early web APIs. Each bot was a tiny daemon with a specific job, running 24/7 on whatever hardware its author could afford to leave powered on.</p>
+        <p className="leading-relaxed text-muted-foreground">
+          The architecture that emerged from that era was surprisingly elegant. An event table. A permission system built on flags. A way to attach handlers to patterns at runtime and detach them without restarting. These ideas proved so sound that every serious IRC bot written since has reinvented some version of them. <strong className="text-foreground">HexBot</strong> is our version — a modular IRC bot for <strong className="text-foreground">Node.js</strong>, written in TypeScript, that takes those same principles and applies them with the tools available today. Hot-reloadable plugins. Type-safe APIs. Docker-ready deployment. The spirit of those 3am channel guardians, running on infrastructure that Oikarinen could never have imagined.
         </p>
       </section>
 
       <section className="space-y-2">
         <h3 className="border-b border-border pb-1 text-foreground">Key Features</h3>
-        <ul className="space-y-1 text-muted-foreground">
+        <ul className="space-y-1.5 text-muted-foreground text-sm">
           <li>
             <strong className="text-foreground">Modular plugins</strong> — load, unload, and hot-reload without restarting
           </li>
@@ -56,7 +66,7 @@ export default function About() {
 
       <section className="space-y-2">
         <h3 className="border-b border-border pb-1 text-foreground">Permission Flags</h3>
-        <table className="w-full text-sm">
+        <table className="w-full">
           <thead>
             <tr className="border-b border-border text-left text-foreground">
               <th className="pb-1 pr-6 font-semibold">Flag</th>
@@ -90,7 +100,7 @@ export default function About() {
 
       <section className="space-y-2">
         <h3 className="border-b border-border pb-1 text-foreground">Tech Stack</h3>
-        <ul className="space-y-1 text-muted-foreground">
+        <ul className="space-y-1.5 text-muted-foreground text-sm">
           <li>
             <strong className="text-foreground">Node.js 24+</strong> — ESM modules, modern runtime
           </li>

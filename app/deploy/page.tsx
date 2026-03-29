@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "HexBot: Get Up and Running",
+};
+
 function CodeBlock({ children }: { children: React.ReactNode }) {
   return <pre className="overflow-x-auto rounded border border-border bg-muted p-3 font-mono leading-relaxed text-foreground">{children}</pre>;
 }
