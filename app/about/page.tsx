@@ -4,7 +4,7 @@ export default function About() {
       <section className="space-y-2">
         <h2 className="text-foreground">About HexBot</h2>
         <p className="leading-relaxed text-muted-foreground">
-          HexBot is a modular <strong className="text-foreground">Internet Relay Chat</strong> bot for <strong className="text-foreground">Node.js</strong>, written in TypeScript. Inspired by Eggdrop&apos;s decades-proven design patterns, HexBot brings that architecture to a modern stack — hot-reloadable plugins, type-safe APIs, and Docker-ready deployment.
+          HexBot is a modular <strong className="text-foreground">Internet Relay Chat</strong> bot for <strong className="text-foreground">Node.js</strong>, written in TypeScript. Inspired by decades-proven design patterns, HexBot brings that architecture to a modern stack — hot-reloadable plugins, type-safe APIs, and Docker-ready deployment.
         </p>
       </section>
 
@@ -18,7 +18,7 @@ export default function About() {
             <strong className="text-foreground">Flag-based permissions</strong> — owner, master, op, voice, per-channel and global
           </li>
           <li>
-            <strong className="text-foreground">Eggdrop-style bind system</strong> — 16 event types, pattern-matched triggers
+            <strong className="text-foreground">Bind system</strong> — 16 event types, pattern-matched triggers
           </li>
           <li>
             <strong className="text-foreground">SASL authentication</strong> — PLAIN and EXTERNAL (CertFP) support

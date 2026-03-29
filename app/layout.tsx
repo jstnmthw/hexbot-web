@@ -4,7 +4,7 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "HexBot",
+  title: "HexBot: Modular IRC Bot",
   description: "HexBot — modular IRC bot for Node.js",
 };
 
@@ -32,7 +32,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="flex w-full items-stretch">
                 <Link href="/" className="flex shrink-0 items-center px-4 text-foreground">
                   <h1 className="m-0 text-[12px] font-bold leading-none tracking-wide">
-                    ⬡ <span className="sr-only">HexBot</span>
+                    <img src="/logo_x16.png" alt="HexBot Logo" width="16" height="16" />
+                    <span className="sr-only">HexBot</span>
                   </h1>
                 </Link>
                 <span className="nav-sep" />
@@ -59,16 +60,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="flex flex-1 flex-col items-center py-4">{children}</main>
 
             {/* ── Footer ───────────────────────────────────────── */}
-            <footer className="border-t border-border py-3 text-xs text-muted-foreground">
-              <div className="flex gap-3">
-                <Link href="/privacy" className="transition-colors hover:text-foreground">
-                  Privacy
+            <footer className="w-2xl mx-auto border-t border-border py-3 text-xs text-muted-foreground">
+              <div className="flex items-start gap-2">
+                <Link href="/">
+                  <img src="/logo_x16.png" alt="HexBot Logo" width="16" height="16" />
                 </Link>
-                <Link href="/contact" className="transition-colors hover:text-foreground">
-                  Contact
-                </Link>
+                <div>
+                  <div className="flex gap-3">
+                    <Link href="/privacy" className="transition-colors hover:text-foreground">
+                      Privacy
+                    </Link>
+                    <Link href="/contact" className="transition-colors hover:text-foreground">
+                      Contact
+                    </Link>
+                  </div>
+                  <div className="mt-1">Copyright &copy; HexBot 2026. All Rights Reserved.</div>
+                </div>
               </div>
-              <div className="mt-1">Copyright &copy; HexBot 2026. All Rights Reserved.</div>
             </footer>
           </div>
         </div>

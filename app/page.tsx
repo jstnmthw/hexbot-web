@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-function ActionButton({ href, children }: { href: string; children: React.ReactNode }) {
+function ActionButton({ children }: { children: React.ReactNode }) {
   return (
-    <Link href={href} className="block rounded border border-border bg-card px-8 py-3 text-center text-foreground transition-colors hover:border-ring hover:bg-accent">
+    <button type="button" className="block rounded border border-border bg-card px-8 py-3 text-center text-foreground transition-colors hover:border-ring hover:bg-accent">
       {children}
-    </Link>
+    </button>
   );
 }
 
@@ -23,15 +23,15 @@ export default function Home() {
       <div className="flex items-center justify-center gap-12 py-4">
         {/* Logo */}
         <div className="text-center">
-          <div className="select-none text-[5rem] leading-none text-primary">⬡</div>
+          <img src="/logo_x64.png" alt="HexBot Logo" width="64" height="64" />
           <div className="mt-1 text-xs text-muted-foreground">v0.1.0</div>
         </div>
 
         {/* Buttons */}
         <div className="flex min-w-40 flex-col gap-3">
-          <ActionButton href="/about">About HexBot</ActionButton>
-          <ActionButton href="/github">Download HexBot</ActionButton>
-          <ActionButton href="/deploy">Deploy with Docker</ActionButton>
+          <ActionButton>About HexBot</ActionButton>
+          <ActionButton>Download HexBot</ActionButton>
+          <ActionButton>Deploy with Docker</ActionButton>
         </div>
       </div>
 
@@ -49,9 +49,9 @@ export default function Home() {
         </p>
         <p className="mb-3 leading-relaxed text-muted-foreground">
           New to HexBot? See the{" "}
-          <Link href="/docs" className="text-foreground hover:underline">
+          <a href="https://github.com/jstnmthw/hexbot/blob/main/README.md" className="text-foreground hover:underline" target="_blank">
             documentation
-          </Link>{" "}
+          </a>{" "}
           to get started, or browse the{" "}
           <Link href="/plugins" className="text-foreground hover:underline">
             plugin library
@@ -59,10 +59,14 @@ export default function Home() {
           to extend your bot.
         </p>
         <p className="leading-relaxed text-muted-foreground">
-          To discuss HexBot with other users or get help, visit the{" "}
-          <Link href="/community" className="text-foreground hover:underline">
-            community forum
-          </Link>
+          To discuss HexBot with other users or get help, join{" "}
+          <a href="https://rizon.net/chat" className="text-foreground hover:underline">
+            #hexbot
+          </a>{" "}
+          on{" "}
+          <a href="https://rizon.net/" className="text-foreground hover:underline">
+            irc.rizon.net
+          </a>
           .
         </p>
       </div>

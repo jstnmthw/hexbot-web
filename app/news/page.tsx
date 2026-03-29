@@ -24,7 +24,7 @@ export default function News() {
             <strong className="text-foreground">8 bundled plugins</strong> — chanmod, flood, greeter, seen, topic, help, ctcp, 8ball
           </li>
           <li>
-            <strong className="text-foreground">Eggdrop-style bind system</strong> — 16 event types, pattern-matched handlers
+            <strong className="text-foreground">Bind system</strong> — 16 event types, pattern-matched handlers
           </li>
           <li>
             <strong className="text-foreground">Flag-based permissions</strong> — owner, master, op, voice; per-channel and global
