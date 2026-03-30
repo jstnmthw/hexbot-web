@@ -3,7 +3,7 @@
 /* ===== Theme tokens — override :root to swap themes ===== */
 :root {
   /* Core */
-  --background: #161616;
+  --background: #1a1a1a;
   --foreground: #fafafa;
 
   /* Card / surface */
