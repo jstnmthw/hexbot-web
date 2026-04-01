@@ -23,15 +23,21 @@ export default function Home() {
       <div className="flex items-center justify-center gap-12 py-4">
         {/* Logo */}
         <div className="text-center">
-          <img src="/logo_x64.png" alt="HexBot Logo" width="64" height="64" />
+          <img src="/hexbot.svg" alt="HexBot Logo" width="128" height="128" />
           <div className="mt-1 text-xs text-muted-foreground">v0.1.0</div>
         </div>
 
         {/* Buttons */}
         <div className="flex min-w-40 flex-col gap-3">
-          <ActionButton>About HexBot</ActionButton>
-          <ActionButton>Download HexBot</ActionButton>
-          <ActionButton>Deploy with Docker</ActionButton>
+          <Link href="/about" className="block rounded border border-border bg-card px-8 py-3 text-center text-foreground transition-colors hover:border-ring hover:bg-accent">
+            About HexBot
+          </Link>
+          <a href="https://github.com/jstnmthw/hexbot/archive/refs/tags/v0.1.0.tar.gz" target="_blank" rel="noopener noreferrer" className="block rounded border border-border bg-card px-8 py-3 text-center text-foreground transition-colors hover:border-ring hover:bg-accent">
+            Download HexBot
+          </a>
+          <Link href="/deploy" className="block rounded border border-border bg-card px-8 py-3 text-center text-foreground transition-colors hover:border-ring hover:bg-accent">
+            Deploy with Docker
+          </Link>
         </div>
       </div>
 

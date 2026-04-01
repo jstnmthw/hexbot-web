@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="flex w-full items-stretch">
                 <Link href="/" className="flex shrink-0 items-center px-4 text-foreground">
                   <h1 className="m-0 text-[12px] font-bold leading-none tracking-wide">
-                    <img src="/logo_x16.png" alt="HexBot Logo" width="16" height="16" />
+                    <img src="/hexbot.svg" alt="HexBot Logo" width="16" height="16" />
                     <span className="sr-only">HexBot</span>
                   </h1>
                 </Link>
@@ -63,17 +63,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <footer className="w-2xl mx-auto border-t border-border py-3 text-xs text-muted-foreground">
               <div className="flex items-start gap-2">
                 <Link href="/">
-                  <img src="/logo_x16.png" alt="HexBot Logo" width="16" height="16" />
+                  <img src="/hexbot.svg" alt="HexBot Logo" width="16" height="16" />
                 </Link>
                 <div>
-                  <div className="flex gap-3">
-                    <Link href="/privacy" className="transition-colors hover:text-foreground">
-                      Privacy
-                    </Link>
-                    <Link href="/contact" className="transition-colors hover:text-foreground">
-                      Contact
-                    </Link>
-                  </div>
                   <div className="mt-1">Copyright &copy; HexBot 2026. All Rights Reserved.</div>
                 </div>
               </div>
