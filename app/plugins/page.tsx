@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 };
 
 function Cmd({ children }: { children: React.ReactNode }) {
-  return <code className="rounded bg-muted px-1 font-mono text-xs text-foreground">{children}</code>;
+  return <code className="inline-block rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-foreground">{children}</code>;
 }
 
 const PLUGINS = [
@@ -73,26 +73,35 @@ export default function Plugins() {
       <section className="space-y-2">
         <h2 className="text-foreground">Plugins</h2>
         <p className="leading-relaxed text-muted-foreground">
-          HexBot ships with {PLUGINS.length} bundled plugins. Plugins are hot-reloadable — edit the file and run <code className="rounded bg-muted px-1 font-mono text-foreground">.reload &lt;name&gt;</code> in IRC or the REPL without restarting the bot.
+          HexBot ships with {PLUGINS.length} bundled plugins. Plugins are hot-reloadable — edit the file and run <code className="rounded bg-muted px-1 font-mono text-foreground">.reload {'<'}name{'>'}</code> in IRC or the REPL without restarting the bot.
         </p>
       </section>
+
       <section>
-        <div className="space-y-3">
-          {PLUGINS.map((plugin) => (
-            <div key={plugin.name} className="border border-border rounded bg-card p-4">
-              <div className="mb-1 flex items-baseline gap-3">
-                <h3 className="text-foreground">{plugin.name}</h3>
-                <span className="text-xs text-muted-foreground">{plugin.tagline}</span>
-              </div>
-              <p className="mb-2 leading-relaxed text-muted-foreground">{plugin.description}</p>
-              {plugin.commands.length > 0 && (
-                <div className="mb-2 flex flex-wrap gap-1">
-                  {plugin.commands.map((cmd) => (
-                    <Cmd key={cmd}>{cmd}</Cmd>
-                  ))}
+        <div className="space-y-2">
+          {PLUGINS.map((plugin, i) => (
+            <div key={plugin.name} className="flex gap-4 rounded border border-border bg-card p-4">
+              {/* Index badge */}
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded border border-accent-red/30 bg-accent-red-dim font-mono text-[10px] text-accent-red">
+                {i + 1}
+              </span>
+
+              {/* Content */}
+              <div className="min-w-0 flex-1">
+                <div className="mb-1 flex items-baseline gap-3">
+                  <h3 className="font-mono text-sm text-foreground">{plugin.name}</h3>
+                  <span className="text-xs text-muted-foreground">{plugin.tagline}</span>
                 </div>
-              )}
-              <p className="text-xs text-muted-foreground">{plugin.notes}</p>
+                <p className="mb-2 leading-relaxed text-muted-foreground">{plugin.description}</p>
+                {plugin.commands.length > 0 && (
+                  <div className="mb-2 flex flex-wrap gap-1">
+                    {plugin.commands.map((cmd) => (
+                      <Cmd key={cmd}>{cmd}</Cmd>
+                    ))}
+                  </div>
+                )}
+                <p className="text-xs text-muted-foreground/70">{plugin.notes}</p>
+              </div>
             </div>
           ))}
         </div>
