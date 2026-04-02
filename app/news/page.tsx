@@ -20,7 +20,7 @@ function Entry({ version, date, children }: { version: string; date: string; chi
 export default function News() {
   return (
     <div className="w-full max-w-170 space-y-6 py-2">
-      <Entry version="v0.1.0 — Initial Release" date="2026">
+      <Entry version="v0.1.0 — Initial Release" date="March, 2026">
         <h2 className="text-foreground">News</h2>
         <p className="mb-3 leading-relaxed text-muted-foreground">HexBot v0.1.0 is the first public release. The core bot framework is production-ready with a full plugin API, permission system, and Docker deployment.</p>
         <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">Included</p>
