@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 };
 
 function CodeBlock({ children }: { children: React.ReactNode }) {
-  return <pre className="overflow-x-auto rounded border border-border bg-muted p-3 font-mono leading-relaxed text-foreground">{children}</pre>;
+  return <pre className="overflow-x-auto rounded border border-border p-3 font-mono leading-relaxed text-foreground bg-nav">{children}</pre>;
 }
 
 const REPL_COMMANDS = [

@@ -65,9 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/">
                   <img src="/hexbot.svg" alt="HexBot Logo" width="16" height="16" />
                 </Link>
-                <div>
-                  <div className="mt-1">Copyright &copy; HexBot 2026. All Rights Reserved.</div>
-                </div>
+                <div>Copyright &copy; HexBot 2026. All Rights Reserved.</div>
               </div>
             </footer>
           </div>
