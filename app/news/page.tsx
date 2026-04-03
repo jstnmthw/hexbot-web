@@ -21,14 +21,14 @@ export default function News() {
 
       {/* ── Timeline ──────────────────────────────────────── */}
       <div className="timeline space-y-8">
-        {/* v0.2.0 */}
+        {/* v0.2.2 */}
         <div className="timeline-item space-y-3">
           <div className="flex items-baseline gap-3">
-            <span className="pill text-accent-red">v0.2.0</span>
+            <span className="pill text-accent-red">v0.2.2</span>
             <span className="text-xs text-muted-foreground">April 2026</span>
           </div>
           <h3 className="text-foreground">Bot Linking, Channel Protection & Hardening</h3>
-          <p className="leading-relaxed text-muted-foreground">v0.2.0 adds multi-bot networking, channel takeover protection, persistent rejoin, and a round of security fixes.</p>
+          <p className="leading-relaxed text-muted-foreground">v0.2.2 adds multi-bot networking, channel takeover protection, persistent rejoin, and a round of security fixes.</p>
 
           <p className="text-sm font-semibold"><GradientText>Added</GradientText></p>
           <ul className="space-y-1 text-muted-foreground text-xs">

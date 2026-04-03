@@ -17,7 +17,7 @@ export default function Home() {
         {/* Logo */}
         <div className="text-center">
           <img src="/hexbot.svg" alt="HexBot Logo" width="128" height="128" />
-          <div className="mt-1 text-xs text-muted-foreground">v0.2.0</div>
+          <div className="mt-1 text-xs text-muted-foreground">v0.2.2</div>
         </div>
 
         {/* Buttons */}
@@ -25,9 +25,9 @@ export default function Home() {
           <Link href="/about" className="block rounded border border-border bg-card px-8 py-3 text-center text-foreground transition-colors hover:border-ring">
             About HexBot
           </Link>
-          <a href="https://github.com/jstnmthw/hexbot/archive/refs/tags/v0.2.0.tar.gz" target="_blank" rel="noopener noreferrer" className="block rounded border border-border bg-card px-8 py-3 text-center text-foreground transition-colors hover:border-accent-red/30">
+          <a href="https://github.com/jstnmthw/hexbot/archive/refs/tags/v0.2.2.tar.gz" target="_blank" rel="noopener noreferrer" className="block rounded border border-border bg-card px-8 py-3 text-center text-foreground transition-colors hover:border-accent-red/30">
             Download HexBot
-            <span className="block text-xs text-muted-foreground">v0.2.0</span>
+            <span className="block text-xs text-muted-foreground">v0.2.2</span>
           </a>
           <Link href="/deploy" className="block rounded border border-border bg-card px-8 py-3 text-center text-foreground transition-colors hover:border-ring">
             Deploy with Docker
@@ -80,7 +80,7 @@ export default function Home() {
       <div className="mx-auto max-w-3xl py-4">
         <h2 className="mb-3 border-b border-border pb-1 text-sm font-semibold text-foreground">Getting Started</h2>
         <p className="mb-3 leading-relaxed text-muted-foreground">
-          HexBot v0.2.0 has been{" "}
+          HexBot v0.2.2 has been{" "}
           <a href="https://github.com/jstnmthw/hexbot/releases" className="decoration-accent-red hover:underline" target="_blank" rel="noopener noreferrer">
             <GradientText>released</GradientText>
           </a>
