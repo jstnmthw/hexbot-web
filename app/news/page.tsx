@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import GradientText from "../components/gradient-text";
+import { HEXBOT_VERSION } from "../config";
 
 export const metadata: Metadata = {
   title: "HexBot: Changelog & Latest Updates",
@@ -21,14 +22,14 @@ export default function News() {
 
       {/* ── Timeline ──────────────────────────────────────── */}
       <div className="timeline space-y-8">
-        {/* v0.2.3 */}
+        {/* Latest release */}
         <div className="timeline-item space-y-3">
           <div className="flex items-baseline gap-3">
-            <span className="pill text-accent-red">v0.2.3</span>
+            <span className="pill text-accent-red">v{HEXBOT_VERSION}</span>
             <span className="text-xs text-muted-foreground">April 2026</span>
           </div>
           <h3 className="text-foreground">Bot Linking, Channel Protection & Hardening</h3>
-          <p className="leading-relaxed text-muted-foreground">v0.2.3 adds multi-bot networking, channel takeover protection, persistent rejoin, and a round of security fixes.</p>
+          <p className="leading-relaxed text-muted-foreground">v{HEXBOT_VERSION} adds multi-bot networking, channel takeover protection, persistent rejoin, and a round of security fixes.</p>
 
           <p className="text-sm font-semibold"><GradientText>Added</GradientText></p>
           <ul className="space-y-1 text-muted-foreground text-xs">
