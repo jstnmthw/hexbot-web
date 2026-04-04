@@ -27,7 +27,7 @@ const PLUGINS = [
     name: "greeter",
     tagline: "Join greetings with custom messages",
     description: "Sends a greeting when users join the channel. Registered users can set their own custom greet message. Supports {channel} and {nick} substitution.",
-    commands: ["!greet set <message>", "!greet delete"],
+    commands: ["!greet set <message>", "!greet del"],
     notes: "Configurable delivery mode (PRIVMSG or NOTICE), min_flag to set custom greet.",
   },
   {
@@ -73,7 +73,7 @@ export default function Plugins() {
       <section className="space-y-2">
         <h2 className="text-foreground">Plugins</h2>
         <p className="leading-relaxed text-muted-foreground">
-          HexBot ships with {PLUGINS.length} bundled plugins. Plugins are hot-reloadable — edit the file and run <code className="rounded bg-muted px-1 font-mono text-foreground">.reload {'<'}name{'>'}</code> in IRC or the REPL without restarting the bot.
+          HexBot ships with {PLUGINS.length} bundled plugins, auto-discovered from the <code className="rounded bg-muted px-1 font-mono text-foreground">plugins/</code> directory. Plugins are hot-reloadable — edit the file and run <code className="rounded bg-muted px-1 font-mono text-foreground">.reload {'<'}name{'>'}</code> in IRC or the REPL without restarting the bot.
         </p>
       </section>
 

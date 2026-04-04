@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 
 const FEATURES = [
   { label: "Modular plugins", detail: "Load, unload, and hot-reload without restarting" },
-  { label: "Flag-based permissions", detail: "Owner, master, op, voice — per-channel and global" },
+  { label: "Flag-based permissions", detail: "Owner, master, op, voice, deop — per-channel and global" },
   { label: "Bind system", detail: "16 event types, pattern-matched triggers" },
   { label: "SASL authentication", detail: "PLAIN and EXTERNAL (CertFP) support" },
   { label: "IRCv3 caps", detail: "extended-join, account-notify, chghost" },
@@ -22,6 +22,7 @@ const PERMISSIONS = [
   { flag: "m", level: "Master", desc: "User management" },
   { flag: "o", level: "Op", desc: "Channel commands, bot admin" },
   { flag: "v", level: "Voice", desc: "Reserved for plugin use" },
+  { flag: "d", level: "Deop", desc: "Suppress auto-op/halfop on join; auto-voice if also +v" },
   { flag: "-", level: "Anyone", desc: "No restriction" },
 ];
 

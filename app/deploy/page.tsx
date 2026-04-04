@@ -105,24 +105,17 @@ pnpm dev            # development, with interactive REPL`}</Terminal>
 
           <div>
             <p className="mb-1 text-sm font-semibold text-foreground">config/plugins.json</p>
-            <p className="mb-2 text-muted-foreground">Enable/disable plugins, set per-plugin channel scope, and override plugin config defaults.</p>
+            <p className="mb-2 text-muted-foreground">Plugins are auto-discovered from <code className="rounded bg-muted px-1 font-mono text-foreground">plugins/</code> — this file is only needed to override config, restrict channels, or disable specific plugins.</p>
             <Terminal title="config/plugins.json">{`{
   "chanmod": {
-    "enabled": true,
     "channels": ["#hexbot"],
     "config": { "auto_op": true, "enforce_modes": false }
   },
-  "flood": { "enabled": false, "channels": ["#hexbot"] },
   "greeter": {
-    "enabled": true,
     "channels": ["#hexbot"],
     "config": { "message": "Welcome to {channel}, {nick}!" }
   },
-  "seen":  { "enabled": true },
-  "8ball": { "enabled": true },
-  "topic": { "enabled": true },
-  "ctcp":  { "enabled": true },
-  "help":  { "enabled": true }
+  "flood": { "enabled": false }
 }`}</Terminal>
           </div>
         </div>

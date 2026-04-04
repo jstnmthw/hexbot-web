@@ -106,7 +106,7 @@ export default function News() {
             {[
               ["8 bundled plugins", "chanmod, flood, greeter, seen, topic, help, ctcp, 8ball"],
               ["Bind system", "16 event types, pattern-matched handlers"],
-              ["Flag-based permissions", "Owner, master, op, voice; per-channel and global"],
+              ["Flag-based permissions", "Owner, master, op, voice, deop; per-channel and global"],
               ["Hot-reload", "Edit and reload plugins without restarting"],
               ["SASL authentication", "PLAIN and EXTERNAL (CertFP)"],
               ["IRCv3 caps", "extended-join, account-notify, chghost"],

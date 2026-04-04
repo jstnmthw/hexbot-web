@@ -48,7 +48,7 @@ export default function Home() {
           </div>
           <div>
             <strong className="text-foreground">Flag permissions</strong>
-            <span className="text-muted-foreground"> — owner, master, op, voice</span>
+            <span className="text-muted-foreground"> — owner, master, op, voice, deop</span>
           </div>
           <div>
             <strong className="text-foreground">Bind system</strong>
