@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "HexBot: Get Up and Running",
+  title: "Deploy",
+  description: "Deploy HexBot with Docker or a manual install. Includes configuration examples, REPL commands, hot-reload guide, and DCC port setup.",
+  alternates: { canonical: "/deploy" },
 };
 
 function Terminal({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="terminal">
-      <div className="terminal-bar">{title}</div>
-      <div className="terminal-body whitespace-pre-wrap leading-relaxed text-foreground">{children}</div>
-    </div>
+    <figure className="terminal m-0">
+      <figcaption className="terminal-bar">{title}</figcaption>
+      <pre className="terminal-body m-0 whitespace-pre-wrap leading-relaxed text-foreground">
+        <code>{children}</code>
+      </pre>
+    </figure>
   );
 }
 
@@ -17,10 +21,8 @@ function Step({ n, title, children }: { n: number; title: string; children: Reac
   return (
     <section className="space-y-2">
       <div className="flex items-center gap-3">
-        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded border border-accent-red/30 bg-accent-red-dim font-mono text-[10px] text-accent-red">
-          {n}
-        </span>
-        <h3 className="border-b border-border pb-1 flex-1 text-foreground">{title}</h3>
+        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded border border-accent-red/30 bg-accent-red-dim font-mono text-[10px] text-accent-red">{n}</span>
+        <h2 className="border-b border-border pb-1 flex-1 text-foreground">{title}</h2>
       </div>
       <div className="pl-8">{children}</div>
     </section>
@@ -44,7 +46,7 @@ export default function Deploy() {
   return (
     <div className="w-full max-w-170 space-y-8 py-2">
       <div>
-        <h2 className="text-foreground">Deploy HexBot</h2>
+        <h1 className="text-foreground text-lg">Deploy HexBot</h1>
       </div>
 
       <Step n={1} title="Requirements">
@@ -105,7 +107,9 @@ pnpm dev            # development, with interactive REPL`}</Terminal>
 
           <div>
             <p className="mb-1 text-sm font-semibold text-foreground">config/plugins.json</p>
-            <p className="mb-2 text-muted-foreground">Plugins are auto-discovered from <code className="rounded bg-muted px-1 font-mono text-foreground">plugins/</code> — this file is only needed to override config, restrict channels, or disable specific plugins.</p>
+            <p className="mb-2 text-muted-foreground">
+              Plugins are auto-discovered from <code className="rounded bg-muted px-1 font-mono text-foreground">plugins/</code> — this file is only needed to override config, restrict channels, or disable specific plugins.
+            </p>
             <Terminal title="config/plugins.json">{`{
   "chanmod": {
     "channels": ["#hexbot"],

@@ -1,10 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import GradientText from "./components/gradient-text";
 import { HEXBOT_VERSION } from "./config";
+
+export const metadata: Metadata = {
+  title: { absolute: "HexBot: Modular IRC Bot for Node.js" },
+  description: "HexBot is a modular, hot-reloadable IRC bot for Node.js, written in TypeScript. Deploy with Docker, extend with plugins, and run on any IRC network.",
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
     <div>
+      <h1 className="sr-only">HexBot: Modular IRC Bot for Node.js</h1>
       {/* Intro */}
       <div className="mx-auto max-w-6xl py-4 text-center leading-relaxed text-muted-foreground">
         <GradientText className="font-bold">HexBot</GradientText> is a modular <strong className="text-foreground">Internet Relay Chat</strong> bot for Node.js, written in <strong className="text-foreground">TypeScript</strong>. <br />
@@ -17,7 +26,7 @@ export default function Home() {
       <div className="flex items-center justify-center gap-12 py-4">
         {/* Logo */}
         <div className="text-center">
-          <img src="/hexbot.svg" alt="HexBot Logo" width="128" height="128" />
+          <Image src="/hexbot.svg" alt="" width={128} height={128} priority />
           <div className="mt-1 text-xs text-muted-foreground">v{HEXBOT_VERSION}</div>
         </div>
 
@@ -81,9 +90,8 @@ export default function Home() {
       <div className="mx-auto max-w-3xl py-4">
         <h2 className="mb-3 border-b border-border pb-1 text-sm font-semibold text-foreground">Getting Started</h2>
         <p className="mb-3 leading-relaxed text-muted-foreground">
-          HexBot v{HEXBOT_VERSION} has been{" "}
           <a href="https://github.com/jstnmthw/hexbot/releases" className="decoration-accent-red hover:underline" target="_blank" rel="noopener noreferrer">
-            <GradientText>released</GradientText>
+            <GradientText>HexBot v{HEXBOT_VERSION} has been released</GradientText>
           </a>
           .
         </p>

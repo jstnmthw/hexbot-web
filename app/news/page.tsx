@@ -4,7 +4,9 @@ import GradientText from "../components/gradient-text";
 import { HEXBOT_VERSION } from "../config";
 
 export const metadata: Metadata = {
-  title: "HexBot: Changelog & Latest Updates",
+  title: "News",
+  description: "HexBot release notes and roadmap. Latest updates on bot linking, channel protection, plugins, security fixes, and upcoming features.",
+  alternates: { canonical: "/news" },
 };
 
 const ROADMAP = [
@@ -17,27 +19,35 @@ export default function News() {
   return (
     <div className="w-full max-w-170 space-y-6 py-2">
       <div>
-        <h2 className="text-foreground">News</h2>
+        <h1 className="text-foreground text-lg">News</h1>
       </div>
 
       {/* ── Timeline ──────────────────────────────────────── */}
       <div className="timeline space-y-8">
         {/* Latest release */}
-        <div className="timeline-item space-y-3">
+        <article className="timeline-item space-y-3">
           <div className="flex items-baseline gap-3">
             <span className="pill text-accent-red">v{HEXBOT_VERSION}</span>
-            <span className="text-xs text-muted-foreground">April 2026</span>
+            <time dateTime="2026-04" className="text-xs text-muted-foreground">
+              April 2026
+            </time>
           </div>
-          <h3 className="text-foreground">Bot Linking, Channel Protection & Hardening</h3>
+          <h2 className="text-foreground">Bot Linking, Channel Protection & Hardening</h2>
           <p className="leading-relaxed text-muted-foreground">v{HEXBOT_VERSION} adds multi-bot networking, channel takeover protection, persistent rejoin, and a round of security fixes.</p>
 
-          <p className="text-sm font-semibold"><GradientText>Added</GradientText></p>
+          <p className="text-xs font-semibold uppercase">
+            <GradientText>Added</GradientText>
+          </p>
           <ul className="space-y-1 text-muted-foreground text-xs">
             <li>
               <strong className="text-foreground">Bot linking protocol</strong> — hub-and-leaf networking with state sync, command relay, and party line chat
             </li>
             <li>
-              <strong className="text-foreground">Session relay</strong> — <code className="rounded bg-muted px-1 font-mono text-foreground">.relay {'<'}botname{'>'}</code> proxies a DCC console session to a remote bot
+              <strong className="text-foreground">Session relay</strong> —{" "}
+              <code className="rounded bg-muted px-1 font-mono text-foreground">
+                .relay {"<"}botname{">"}
+              </code>{" "}
+              proxies a DCC console session to a remote bot
             </li>
             <li>
               <strong className="text-foreground">Protection frames</strong> — cross-network takeover protection and ban sharing between linked bots
@@ -59,7 +69,9 @@ export default function News() {
             </li>
           </ul>
 
-          <p className="text-sm font-semibold"><GradientText>Fixed</GradientText></p>
+          <p className="text-xs font-semibold uppercase">
+            <GradientText>Fixed</GradientText>
+          </p>
           <ul className="space-y-1 text-muted-foreground text-xs">
             <li>
               <strong className="text-foreground">ChanServ OP on Rizon</strong> — OP request no longer gated on ChanServ being in the channel
@@ -88,20 +100,24 @@ export default function News() {
             </a>{" "}
             for the full list of changes.
           </p>
-        </div>
+        </article>
 
         <hr className="mx-12 border-border" />
 
         {/* v0.1.0 */}
-        <div className="timeline-item space-y-3">
+        <article className="timeline-item space-y-3">
           <div className="flex items-baseline gap-3">
             <span className="pill text-accent-red">v0.1.0</span>
-            <span className="text-xs text-muted-foreground">March 2026</span>
+            <time dateTime="2026-03" className="text-xs text-muted-foreground">
+              March 2026
+            </time>
           </div>
-          <h3 className="text-foreground">Initial Release</h3>
+          <h2 className="text-foreground">Initial Release</h2>
           <p className="leading-relaxed text-muted-foreground">HexBot v0.1.0 is the first public release. The core bot framework is production-ready with a full plugin API, permission system, and Docker deployment.</p>
 
-          <p className="text-[10px] font-semibold uppercase tracking-widest"><GradientText>Included</GradientText></p>
+          <p className="text-[10px] font-semibold uppercase">
+            <GradientText>Included</GradientText>
+          </p>
           <div className="grid grid-cols-2 gap-1.5">
             {[
               ["8 bundled plugins", "chanmod, flood, greeter, seen, topic, help, ctcp, 8ball"],
@@ -131,14 +147,17 @@ export default function News() {
             <Link href="/plugins" className="text-foreground hover:underline">
               plugin list
             </Link>{" "}
-            to see what's included.
+            to see what’s included.
           </p>
-        </div>
+        </article>
 
         <hr className="mx-12 border-border" />
 
         {/* Upcoming */}
-        <div className="timeline-item">
+        <section aria-labelledby="roadmap-heading" className="timeline-item">
+          <h2 id="roadmap-heading" className="sr-only">
+            Roadmap
+          </h2>
           <div className="mb-3 flex items-baseline gap-3">
             <span className="pill">upcoming</span>
             <span className="text-xs text-muted-foreground">Roadmap</span>
@@ -151,7 +170,7 @@ export default function News() {
               </li>
             ))}
           </ul>
-        </div>
+        </section>
       </div>
     </div>
   );

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "HexBot: Extend Your Bot with Plugins",
+  title: "Plugins",
+  description: "Browse HexBot's 8 bundled plugins: channel moderation, flood protection, greeter, seen, topic, help, CTCP, and 8ball. Hot-reloadable and auto-discovered.",
+  alternates: { canonical: "/plugins" },
 };
 
 function Cmd({ children }: { children: React.ReactNode }) {
@@ -71,40 +73,44 @@ export default function Plugins() {
   return (
     <div className="w-full max-w-170 space-y-6 py-2">
       <section className="space-y-2">
-        <h2 className="text-foreground">Plugins</h2>
+        <h1 className="text-foreground text-lg">Plugins</h1>
         <p className="leading-relaxed text-muted-foreground">
-          HexBot ships with {PLUGINS.length} bundled plugins, auto-discovered from the <code className="rounded bg-muted px-1 font-mono text-foreground">plugins/</code> directory. Plugins are hot-reloadable — edit the file and run <code className="rounded bg-muted px-1 font-mono text-foreground">.reload {'<'}name{'>'}</code> in IRC or the REPL without restarting the bot.
+          HexBot ships with {PLUGINS.length} bundled plugins, auto-discovered from the <code className="rounded bg-muted px-1 font-mono text-foreground">plugins/</code> directory. Plugins are hot-reloadable — edit the file and run{" "}
+          <code className="rounded bg-muted px-1 font-mono text-foreground">
+            .reload {"<"}name{">"}
+          </code>{" "}
+          in IRC or the REPL without restarting the bot.
         </p>
       </section>
 
-      <section>
-        <div className="space-y-2">
+      <section aria-label="Bundled plugins">
+        <ul className="list-none space-y-2 pl-0">
           {PLUGINS.map((plugin, i) => (
-            <div key={plugin.name} className="flex gap-4 rounded border border-border bg-card p-4">
-              {/* Index badge */}
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded border border-accent-red/30 bg-accent-red-dim font-mono text-[10px] text-accent-red">
-                {i + 1}
-              </span>
+            <li key={plugin.name}>
+              <article className="flex gap-4 rounded border border-border bg-card p-4">
+                {/* Index badge */}
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded border border-accent-red/30 bg-accent-red-dim font-mono text-[10px] text-accent-red">{i + 1}</span>
 
-              {/* Content */}
-              <div className="min-w-0 flex-1">
-                <div className="mb-1 flex items-baseline gap-3">
-                  <h3 className="font-mono text-sm text-foreground">{plugin.name}</h3>
-                  <span className="text-xs text-muted-foreground">{plugin.tagline}</span>
-                </div>
-                <p className="mb-2 leading-relaxed text-muted-foreground">{plugin.description}</p>
-                {plugin.commands.length > 0 && (
-                  <div className="mb-2 flex flex-wrap gap-1">
-                    {plugin.commands.map((cmd) => (
-                      <Cmd key={cmd}>{cmd}</Cmd>
-                    ))}
+                {/* Content */}
+                <div className="min-w-0 flex-1">
+                  <div className="mb-1 flex items-baseline gap-3">
+                    <h2 className="font-mono text-sm text-foreground">{plugin.name}</h2>
+                    <span className="text-xs text-muted-foreground">{plugin.tagline}</span>
                   </div>
-                )}
-                <p className="text-xs text-muted-foreground/70">{plugin.notes}</p>
-              </div>
-            </div>
+                  <p className="mb-2 leading-relaxed text-muted-foreground">{plugin.description}</p>
+                  {plugin.commands.length > 0 && (
+                    <div className="mb-2 flex flex-wrap gap-1">
+                      {plugin.commands.map((cmd) => (
+                        <Cmd key={cmd}>{cmd}</Cmd>
+                      ))}
+                    </div>
+                  )}
+                  <p className="text-xs text-muted-foreground/70">{plugin.notes}</p>
+                </div>
+              </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     </div>
   );
