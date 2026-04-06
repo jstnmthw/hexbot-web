@@ -90,8 +90,9 @@ export default function Home() {
       <div className="mx-auto max-w-3xl py-4">
         <h2 className="mb-3 border-b border-border pb-1 text-sm font-semibold text-foreground">Getting Started</h2>
         <p className="mb-3 leading-relaxed text-muted-foreground">
-          <a href="https://github.com/jstnmthw/hexbot/releases" className="decoration-accent-red hover:underline" target="_blank" rel="noopener noreferrer">
-            <GradientText>HexBot v{HEXBOT_VERSION} has been released</GradientText>
+          <GradientText className="font-bold">HexBot v{HEXBOT_VERSION}</GradientText> has been{" "}
+          <a href="https://github.com/jstnmthw/hexbot/releases" target="_blank" rel="noopener noreferrer" className="text-foreground hover:underline">
+            released
           </a>
           .
         </p>
