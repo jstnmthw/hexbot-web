@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import GradientText from "../components/gradient-text";
+import InlineCode from "../components/inline-code";
 import { HEXBOT_VERSION } from "../config";
 
 export const metadata: Metadata = {
-  title: "News",
+  title: "Changelog & Latest Updates",
   description: "HexBot release notes and roadmap. Latest updates on bot linking, channel protection, plugins, security fixes, and upcoming features.",
   alternates: { canonical: "/news" },
 };
@@ -44,9 +45,9 @@ export default function News() {
             </li>
             <li>
               <strong className="text-foreground">Session relay</strong> —{" "}
-              <code className="rounded bg-muted px-1 font-mono text-foreground">
+              <InlineCode>
                 .relay {"<"}botname{">"}
-              </code>{" "}
+              </InlineCode>{" "}
               proxies a DCC console session to a remote bot
             </li>
             <li>

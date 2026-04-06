@@ -178,7 +178,6 @@ body {
   box-shadow: 1px 0 0 0 #262626;
 }
 
-
 /* ===== Terminal window component ===== */
 .terminal {
   border: 1px solid var(--border);
@@ -214,7 +213,6 @@ body {
   font-size: 11px;
   line-height: 1.8;
 }
-
 
 /* ===== Log line fade-in ===== */
 @keyframes log-in {

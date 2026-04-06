@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import InlineCode from "../components/inline-code";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "What is HexBot?",
   description: "Learn about HexBot's history, architecture, plugin system, and flag-based permissions. A modular IRC bot for Node.js written in TypeScript.",
   alternates: { canonical: "/about" },
 };
@@ -67,7 +68,7 @@ export default function About() {
           HexBot uses a two-tier module system. <strong className="text-foreground">Core modules</strong> are always loaded and provide the bot’s foundational services — the IRC bridge, dispatcher, permission engine, channel state, and database. <strong className="text-foreground">Plugins</strong> are isolated, hot-reloadable units that register event binds against the dispatcher and never depend on each other.
         </p>
         <p className="leading-relaxed text-muted-foreground">
-          Plugins call <code className="rounded bg-muted px-1 font-mono text-foreground">bind(type, flags, mask, handler)</code> to subscribe to IRC events. The dispatcher matches incoming events against all registered binds, checks permissions, and calls handlers in registration order.
+          Plugins call <InlineCode>bind(type, flags, mask, handler)</InlineCode> to subscribe to IRC events. The dispatcher matches incoming events against all registered binds, checks permissions, and calls handlers in registration order.
         </p>
       </section>
 

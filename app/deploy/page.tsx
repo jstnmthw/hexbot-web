@@ -1,27 +1,19 @@
 import type { Metadata } from "next";
+import Terminal from "../components/terminal";
+import NumberBadge from "../components/number-badge";
+import InlineCode from "../components/inline-code";
 
 export const metadata: Metadata = {
-  title: "Deploy",
+  title: "Get Up and Running",
   description: "Deploy HexBot with Docker or a manual install. Includes configuration examples, REPL commands, hot-reload guide, and DCC port setup.",
   alternates: { canonical: "/deploy" },
 };
-
-function Terminal({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <figure className="terminal m-0">
-      <figcaption className="terminal-bar">{title}</figcaption>
-      <pre className="terminal-body m-0 whitespace-pre-wrap leading-relaxed text-foreground">
-        <code>{children}</code>
-      </pre>
-    </figure>
-  );
-}
 
 function Step({ n, title, children }: { n: number; title: string; children: React.ReactNode }) {
   return (
     <section className="space-y-2">
       <div className="flex items-center gap-3">
-        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded border border-accent-red/30 bg-accent-red-dim font-mono text-[10px] text-accent-red">{n}</span>
+        <NumberBadge n={n} />
         <h2 className="border-b border-border pb-1 flex-1 text-foreground">{title}</h2>
       </div>
       <div className="pl-8">{children}</div>
@@ -108,7 +100,7 @@ pnpm dev            # development, with interactive REPL`}</Terminal>
           <div>
             <p className="mb-1 text-sm font-semibold text-foreground">config/plugins.json</p>
             <p className="mb-2 text-muted-foreground">
-              Plugins are auto-discovered from <code className="rounded bg-muted px-1 font-mono text-foreground">plugins/</code> — this file is only needed to override config, restrict channels, or disable specific plugins.
+              Plugins are auto-discovered from <InlineCode>plugins/</InlineCode> — this file is only needed to override config, restrict channels, or disable specific plugins.
             </p>
             <Terminal title="config/plugins.json">{`{
   "chanmod": {
@@ -127,7 +119,7 @@ pnpm dev            # development, with interactive REPL`}</Terminal>
 
       <Step n={5} title="REPL Commands">
         <p className="mb-2 text-muted-foreground">
-          Run with <code className="rounded bg-muted px-1 font-mono text-foreground">pnpm dev</code> to get an interactive REPL with owner-level access — no IRC auth required.
+          Run with <InlineCode>pnpm dev</InlineCode> to get an interactive REPL with owner-level access — no IRC auth required.
         </p>
         <div className="terminal">
           <div className="terminal-bar">repl</div>

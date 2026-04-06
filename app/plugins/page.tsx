@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
+import Cmd from "../components/cmd";
+import NumberBadge from "../components/number-badge";
+import InlineCode from "../components/inline-code";
 
 export const metadata: Metadata = {
-  title: "Plugins",
+  title: "Extend Your Bot with Plugins",
   description: "Browse HexBot's 8 bundled plugins: channel moderation, flood protection, greeter, seen, topic, help, CTCP, and 8ball. Hot-reloadable and auto-discovered.",
   alternates: { canonical: "/plugins" },
 };
-
-function Cmd({ children }: { children: React.ReactNode }) {
-  return <code className="inline-block rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-[10px] text-foreground">{children}</code>;
-}
 
 const PLUGINS = [
   {
@@ -75,10 +74,10 @@ export default function Plugins() {
       <section className="space-y-2">
         <h1 className="text-foreground text-lg">Plugins</h1>
         <p className="leading-relaxed text-muted-foreground">
-          HexBot ships with {PLUGINS.length} bundled plugins, auto-discovered from the <code className="rounded bg-muted px-1 font-mono text-foreground">plugins/</code> directory. Plugins are hot-reloadable — edit the file and run{" "}
-          <code className="rounded bg-muted px-1 font-mono text-foreground">
+          HexBot ships with {PLUGINS.length} bundled plugins, auto-discovered from the <InlineCode>plugins/</InlineCode> directory. Plugins are hot-reloadable — edit the file and run{" "}
+          <InlineCode>
             .reload {"<"}name{">"}
-          </code>{" "}
+          </InlineCode>{" "}
           in IRC or the REPL without restarting the bot.
         </p>
       </section>
@@ -89,7 +88,7 @@ export default function Plugins() {
             <li key={plugin.name}>
               <article className="flex gap-4 rounded border border-border bg-card p-4">
                 {/* Index badge */}
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded border border-accent-red/30 bg-accent-red-dim font-mono text-[10px] text-accent-red">{i + 1}</span>
+                <NumberBadge n={i + 1} />
 
                 {/* Content */}
                 <div className="min-w-0 flex-1">
@@ -100,8 +99,8 @@ export default function Plugins() {
                   <p className="mb-2 leading-relaxed text-muted-foreground">{plugin.description}</p>
                   {plugin.commands.length > 0 && (
                     <div className="mb-2 flex flex-wrap gap-1">
-                      {plugin.commands.map((cmd) => (
-                        <Cmd key={cmd}>{cmd}</Cmd>
+                      {plugin.commands.map((cmd, i) => (
+                        <Cmd key={i}>{cmd}</Cmd>
                       ))}
                     </div>
                   )}
