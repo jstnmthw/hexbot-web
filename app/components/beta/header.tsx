@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import GradientText from "../gradient-text";
 
 const NAV_LINKS = [
   { href: "/Guide", label: "Guide" },
@@ -14,9 +13,9 @@ export function Header() {
     <>
       <header className="container mx-auto px-6 py-5 border border-border border-t-0 flex flex-col justify-between md:flex-row md:items-center">
         <div className="flex items-center gap-10">
-          <h1 className="text-xl font-bold tracking-tight uppercase">
+          <h1 className="font-bold tracking-tight uppercase">
             <Link href="/beta" className="flex items-center">
-              <Image src="/hexbot.svg" alt="HexBot logo" className="inline h-8 w-8 mr-2" width={16} height={16} loading="eager" />
+              <Image src="/hexbot.svg" alt="HexBot logo" className="inline h-4 w-4 mr-2" width={16} height={16} loading="eager" />
               Hex
               <span className="font-light text-muted">bot</span>
             </Link>
