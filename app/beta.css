@@ -15,7 +15,7 @@
   --popover-foreground: #fafafa;
 
   /* Primary action */
-  --primary: #e5e5e5;
+  --primary: #ff0000;
   --primary-foreground: #0a0a0a;
 
   /* Secondary surface */
@@ -23,7 +23,7 @@
   --secondary-foreground: #a3a3a3;
 
   /* Muted (subdued) */
-  --muted: #3d3939;
+  --muted: #999494;
   --muted-foreground: #888888;
 
   /* Accent hover */
@@ -58,6 +58,9 @@
 
   /* Shape */
   --radius: 0.25rem;
+
+  /* Divider cross */
+  --divider-cross: #646161;
 }
 
 /* ===== Tailwind v4 theme mapping ===== */
@@ -124,4 +127,32 @@ body {
   h6 {
     font-family: var(--font-heading);
   }
+}
+
+/* ===== Divider with "+" crosses at the left/right container edges ===== */
+.divider-cross {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 0;
+}
+
+.divider-cross::before,
+.divider-cross::after {
+  content: "";
+  width: 17px;
+  height: 17px;
+  background:
+    linear-gradient(var(--divider-cross), var(--divider-cross)) center / 1px 100% no-repeat,
+    linear-gradient(var(--divider-cross), var(--divider-cross)) center / 100% 1px no-repeat;
+}
+
+.divider-cross::before {
+  margin-left: -8px;
+  transform: translateY(-9px);
+}
+
+.divider-cross::after {
+  margin-right: -8px;
+  transform: translateY(-9px);
 }
