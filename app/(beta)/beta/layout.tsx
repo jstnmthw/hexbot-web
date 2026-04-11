@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
 import "../../beta.css";
+import type { Metadata } from "next";
 import { SITE_URL } from "../../config";
+import { Header } from "@/app/components/beta/header";
+import { Footer } from "@/app/components/beta/footer";
+import { Archivo, Inter } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -65,7 +67,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${archivo.variable}`}>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        {children}
+        <div className="min-h-screen bg-background">
+          <div className="mx-auto flex min-h-screen flex-col">
+            <Header />
+            <main className="flex flex-1 flex-col">{children}</main>
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );

@@ -7,5 +7,12 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <main>Hello Beta</main>;
+  return (
+    <div className="container mx-auto flex-1 border-l border-r border-border">
+      <div className="flex flex-col items-center py-12">
+        <p className="text-4xl font-bold">404</p>
+        <h1 className="text-2xl">Page Not Found</h1>
+      </div>
+    </div>
+  );
 }
