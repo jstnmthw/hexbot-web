@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Terminal from "../components/terminal";
-import NumberBadge from "../components/number-badge";
-import InlineCode from "../components/inline-code";
+import Terminal from "../../components/terminal";
+import NumberBadge from "../../components/number-badge";
+import InlineCode from "../../components/inline-code";
 
 export const metadata: Metadata = {
   title: "Get Up and Running",

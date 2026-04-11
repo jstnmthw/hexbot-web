@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import GradientText from "./components/gradient-text";
-import { HEXBOT_VERSION } from "./config";
+import GradientText from "../components/gradient-text";
+import { HEXBOT_VERSION } from "../config";
 
 export const metadata: Metadata = {
   title: { absolute: "HexBot: Modular IRC Bot for Node.js" },

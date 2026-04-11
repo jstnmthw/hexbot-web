@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import InlineCode from "../components/inline-code";
-import GradientText from "../components/gradient-text";
+import InlineCode from "../../components/inline-code";
+import GradientText from "../../components/gradient-text";
 
 export const metadata: Metadata = {
   title: "What is HexBot?",

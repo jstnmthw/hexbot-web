@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Cmd from "../components/cmd";
-import NumberBadge from "../components/number-badge";
-import InlineCode from "../components/inline-code";
+import Cmd from "../../components/cmd";
+import NumberBadge from "../../components/number-badge";
+import InlineCode from "../../components/inline-code";
 
 export const metadata: Metadata = {
   title: "Extend Your Bot with Plugins",

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import GradientText from "../components/gradient-text";
-import InlineCode from "../components/inline-code";
-import { HEXBOT_VERSION } from "../config";
+import GradientText from "../../components/gradient-text";
+import InlineCode from "../../components/inline-code";
+import { HEXBOT_VERSION } from "../../config";
 
 export const metadata: Metadata = {
   title: "Changelog & Latest Updates",
