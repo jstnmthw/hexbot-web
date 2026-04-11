@@ -38,10 +38,8 @@ export default function About() {
       {/* ── Narrative ─────────────────────────────────────── */}
       <section className="space-y-4">
         <h1 className="text-foreground text-lg">About HexBot</h1>
-        <div className="space-y-4 border-l border-border pl-4">
-          <p className="leading-relaxed text-muted-foreground">
-            <strong className="text-foreground">Internet Relay Chat</strong> was one of the earliest widely adopted real-time systems on the internet. Networks like EFnet, Undernet, DALnet, and QuakeNet connected large numbers of users through a distributed set of servers, all speaking a simple, open protocol. There was no central authority and very little built-in persistence—channels, users, and permissions existed as long as the network could maintain a consistent view of them.
-          </p>
+        <div className="space-y-4">
+          <p className="leading-relaxed text-muted-foreground">Internet Relay Chat was one of the earliest widely adopted real-time systems on the internet. Networks like EFnet, Undernet, DALnet, and QuakeNet connected large numbers of users through a distributed set of servers, all speaking a simple, open protocol. There was no central authority and very little built-in persistence—channels, users, and permissions existed as long as the network could maintain a consistent view of them.</p>
           <p className="leading-relaxed text-muted-foreground">That model worked, but it came with trade-offs. Networks were prone to instability, and channels required constant oversight. Operators couldn’t realistically provide that 24/7, which is where bots came in. A bot could remain connected indefinitely, maintain operator status, enforce basic rules, and respond immediately to events. Over time, bots expanded beyond moderation into general-purpose utilities—tracking users, serving information, automating repetitive tasks, and integrating external data.</p>
           <p className="leading-relaxed text-muted-foreground">Despite being built in different languages and environments, most IRC bots converged on similar design patterns. They reacted to events, exposed commands, and used some form of permission system to control behavior. Many supported dynamically extending functionality through scripts or modules. These approaches weren’t formalized, but they proved practical and have remained consistent across implementations.</p>
           <p className="leading-relaxed text-muted-foreground">
