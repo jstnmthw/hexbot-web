@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 const NAV_LINKS = [
-  { href: "/Guide", label: "Guide" },
-  { href: "/plugins", label: "Plugins" },
-  { href: "/config", label: "Config" },
-  { href: "/news", label: "News" },
+  { href: "/beta/guide", label: "Guide" },
+  { href: "/beta/plugins", label: "Plugins" },
+  { href: "/beta/config", label: "Config" },
+  { href: "/beta/news", label: "News" },
 ];
 
 export function Header() {

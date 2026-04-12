@@ -1,66 +1,82 @@
 @import "tailwindcss";
 
+/* 
+  Tailwind Taupe Color Scheme:
+  
+  --color-taupe-50: oklch(98.6% 0.002 67.8);
+  --color-taupe-100: oklch(96% 0.002 17.2);
+  --color-taupe-200: oklch(92.2% 0.005 34.3);
+  --color-taupe-300: oklch(86.8% 0.007 39.5);
+  --color-taupe-400: oklch(71.4% 0.014 41.2);
+  --color-taupe-500: oklch(54.7% 0.021 43.1);
+  --color-taupe-600: oklch(43.8% 0.017 39.3);
+  --color-taupe-700: oklch(36.7% 0.016 35.7);
+  --color-taupe-800: oklch(26.8% 0.011 36.5);
+  --color-taupe-900: oklch(21.4% 0.009 43.1);
+  --color-taupe-950: oklch(14.7% 0.004 49.3);
+*/
+
 /* ===== Theme tokens — override :root to swap themes ===== */
 :root {
   /* Core */
-  --background: #1a1919;
-  --foreground: #fafafa;
+  --background: oklch(21% 0.006 17.47);
+  --foreground: oklch(98.6% 0.002 67.8);
 
   /* Card / surface */
-  --card: #111111;
-  --card-foreground: #fafafa;
+  --card: oklch(14.7% 0.004 49.3);
+  --card-foreground: oklch(98.6% 0.002 67.8);
 
   /* Popover */
-  --popover: #111111;
-  --popover-foreground: #fafafa;
+  --popover: oklch(14.7% 0.004 49.3);
+  --popover-foreground: oklch(98.6% 0.002 67.8);
 
   /* Primary action */
-  --primary: #ff0000;
-  --primary-foreground: #0a0a0a;
+  --primary: oklch(62.8% 0.25 17.6);
+  --primary-foreground: oklch(14.7% 0.004 49.3);
 
   /* Secondary surface */
-  --secondary: #1c1c1c;
-  --secondary-foreground: #a3a3a3;
+  --secondary: oklch(14.7% 0.004 49.3);
+  --secondary-foreground: oklch(71.4% 0.014 41.2);
 
   /* Muted (subdued) */
-  --muted: #999494;
-  --muted-foreground: #888888;
+  --muted: oklch(71.4% 0.014 41.2);
+  --muted-foreground: oklch(54.7% 0.021 43.1);
 
   /* Accent hover */
-  --accent: #181818;
-  --accent-foreground: #fafafa;
+  --accent: oklch(14.7% 0.004 49.3);
+  --accent-foreground: oklch(98.6% 0.002 67.8);
 
   /* Destructive */
-  --destructive: #991b1b;
-  --destructive-foreground: #fafafa;
+  --destructive: oklch(44.4% 0.158 17);
+  --destructive-foreground: oklch(98.6% 0.002 67.8);
 
   /* Borders / inputs */
-  --border: #332f2f;
-  --border-darker: #1a1a1a;
-  --input: #1c1c1c;
-  --ring: #444444;
+  --border: oklch(26.8% 0.011 36.5);
+  --border-darker: oklch(14.7% 0.004 49.3);
+  --input: oklch(14.7% 0.004 49.3);
+  --ring: oklch(36.7% 0.016 35.7);
 
   /* Nav bar */
-  --nav: #0f0f0f;
-  --nav-foreground: #c0c0c0;
+  --nav: oklch(14.7% 0.004 49.3);
+  --nav-foreground: oklch(86.8% 0.007 39.5);
 
   /* Sidebar */
-  --sidebar: #0f0f0f;
-  --sidebar-foreground: #a3a3a3;
-  --sidebar-border: #1c1c1c;
+  --sidebar: oklch(14.7% 0.004 49.3);
+  --sidebar-foreground: oklch(71.4% 0.014 41.2);
+  --sidebar-border: oklch(21.4% 0.009 43.1);
 
   /* Accent — blood red */
-  --accent-red: #ff0000;
-  --accent-red-dim: #330f0f;
+  --accent-red: oklch(62.8% 0.25 17.6);
+  --accent-red-dim: oklch(22.8% 0.059 16);
 
   /* Terminal prompt green */
-  --terminal-green: #33ff33;
+  --terminal-green: oklch(87.5% 0.131 122.1);
 
   /* Shape */
   --radius: 0.25rem;
 
   /* Divider cross */
-  --divider-cross: #646161;
+  --divider-cross: oklch(43.8% 0.017 39.3);
 }
 
 /* ===== Tailwind v4 theme mapping ===== */
