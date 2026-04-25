@@ -24,14 +24,18 @@ function Step({ n, title, children }: { n: number; title: string; children: Reac
 const REPL_COMMANDS = [
   { cmd: ".help [cmd]", desc: "List commands or show detail for one" },
   { cmd: ".status", desc: "Connection info, uptime, bind and user counts" },
+  { cmd: ".uptime", desc: "One-line uptime report" },
   { cmd: ".say <target> <msg>", desc: "Send a message to a channel or user" },
   { cmd: ".msg <target> <msg>", desc: "Send a PRIVMSG to any target" },
   { cmd: ".join / .part", desc: "Join or part a channel" },
   { cmd: ".flags [handle] [+flags [#chan]]", desc: "View or set user flags" },
   { cmd: ".adduser / .deluser / .users", desc: "User management" },
+  { cmd: ".chpass <handle> <newpass>", desc: "Set or rotate a user's DCC password (REPL/DCC only)" },
   { cmd: ".chanset / .chaninfo", desc: "Per-channel plugin settings" },
   { cmd: ".binds [plugin]", desc: "List active event binds" },
   { cmd: ".plugins / .load / .unload / .reload", desc: "Plugin management" },
+  { cmd: ".modlog [filter...]", desc: "Query the moderation audit log (DCC/REPL only)" },
+  { cmd: ".audit-tail [filter...]", desc: "Stream audit:log events live (REPL only)" },
 ];
 
 export default function Deploy() {
