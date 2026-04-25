@@ -144,10 +144,7 @@ pnpm dev            # development, with interactive REPL`}</Terminal>
 
       <Step n={6} title="Hot-Reloading Plugins">
         <p className="mb-2 text-muted-foreground">Edit a plugin file, then reload it without restarting the bot:</p>
-        <Terminal title="reload">{`# In IRC (requires +o or higher):
-!reload chanmod
-
-# In the REPL:
+        <Terminal title="reload">{`# In the REPL or DCC console, run:
 .reload chanmod`}</Terminal>
       </Step>
     </div>
