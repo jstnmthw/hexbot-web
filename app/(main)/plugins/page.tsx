@@ -5,11 +5,20 @@ import InlineCode from "../../components/inline-code";
 
 export const metadata: Metadata = {
   title: "Extend Your Bot with Plugins",
-  description: "Browse HexBot's 8 bundled plugins: channel moderation, flood protection, greeter, seen, topic, help, CTCP, and 8ball. Hot-reloadable and auto-discovered.",
+  description: "Browse HexBot's 9 bundled plugins: ai-chat, channel moderation, flood protection, greeter, seen, topic, help, CTCP, and 8ball. Hot-reloadable and auto-discovered.",
   alternates: { canonical: "/plugins" },
 };
 
 const PLUGINS = [
+  {
+    name: "ai-chat",
+    tagline: "AI-powered channel regular",
+    description:
+      "Conversational AI via Gemini or self-hosted Ollama. Talk to the bot by nick and it responds in character — ambient participation, mood, sliding-window context, and on-demand game sessions. Channel-only; private messaging is intentionally disabled.",
+    commands: ["<botnick>: <message>", "!ai help", "!ai character <name>", "!ai play <name>"],
+    notes:
+      "9 personality presets with per-channel assignment and runtime swap. Provider adapter (gemini/ollama), layered rate limiting, per-user token budgets, ChanServ fantasy-command injection defense, and a founder-tier refusal gate.",
+  },
   {
     name: "chanmod",
     tagline: "Channel moderation and protection",
