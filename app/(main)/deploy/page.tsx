@@ -5,7 +5,7 @@ import InlineCode from "../../components/inline-code";
 
 export const metadata: Metadata = {
   title: "Get Up and Running",
-  description: "Deploy HexBot with Docker or a manual install. Includes configuration examples, REPL commands, hot-reload guide, and DCC port setup.",
+  description: "Deploy HexBot with Docker or a manual install. Includes configuration examples, REPL commands, plugin management, and DCC port setup.",
   alternates: { canonical: "/deploy" },
 };
 
@@ -33,7 +33,9 @@ const REPL_COMMANDS = [
   { cmd: ".chpass <handle> <newpass>", desc: "Set or rotate a user's DCC password (REPL/DCC only)" },
   { cmd: ".chanset / .chaninfo", desc: "Per-channel plugin settings" },
   { cmd: ".binds [plugin]", desc: "List active event binds" },
-  { cmd: ".plugins / .load / .unload / .reload", desc: "Plugin management" },
+  { cmd: ".plugins / .load / .unload / .set", desc: "Plugin management" },
+  { cmd: ".reset <plugin>", desc: "Restore a plugin's settings to defaults" },
+  { cmd: ".restart", desc: "Restart the bot process" },
   { cmd: ".modlog [filter...]", desc: "Query the moderation audit log (DCC/REPL only)" },
   { cmd: ".audit-tail [filter...]", desc: "Stream audit:log events live (REPL only)" },
 ];
@@ -142,10 +144,10 @@ pnpm dev            # development, with interactive REPL`}</Terminal>
         </div>
       </Step>
 
-      <Step n={6} title="Hot-Reloading Plugins">
-        <p className="mb-2 text-muted-foreground">Edit a plugin file, then reload it without restarting the bot:</p>
-        <Terminal title="reload">{`# In the REPL or DCC console, run:
-.reload chanmod`}</Terminal>
+      <Step n={6} title="Applying Plugin Changes">
+        <p className="mb-2 text-muted-foreground">Edit a plugin file, then apply the change persistently without restarting the bot:</p>
+        <Terminal title="set">{`# In the REPL or DCC console, run:
+.set chanmod`}</Terminal>
       </Step>
     </div>
   );
