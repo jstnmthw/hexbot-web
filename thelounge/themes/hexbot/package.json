@@ -1,0 +1,14 @@
+{
+  "name": "thelounge-theme-hexbot",
+  "version": "0.1.0",
+  "description": "Locked-down public theme for chat.hexbot.net — hides every connect-form field except Nick and removes admin/network affordances from the sidebar.",
+  "main": "package.json",
+  "private": true,
+  "thelounge": {
+    "name": "HexBot",
+    "type": "theme",
+    "css": "theme.css",
+    "themeColor": "#1a1a1a"
+  },
+  "keywords": ["thelounge", "thelounge-theme"]
+}

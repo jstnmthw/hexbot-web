@@ -1,0 +1,66 @@
+/*!
+ * thelounge-theme-hexbot
+ * Locked-down theme for chat.hexbot.net.
+ *
+ * Loaded on top of The Lounge's default stylesheet. We only override what we
+ * want to remove or restyle; everything else inherits from default.
+ *
+ * NOTE: this is UI lockdown, not security. Determined users can still issue
+ * raw IRC commands (`/join`, `/server`, etc.) from the message input, and
+ * devtools can un-hide anything. For real channel restrictions, enforce them
+ * IRC-side via channel modes or HexBot.
+ */
+
+/* ---------- Connect form: hide everything except the Nick field ---------- */
+
+/* Each label+input group is wrapped in .connect-row inside form.container.
+ * Hide them all, then re-show only the row containing the Nick input.
+ * Selecting via [name="nick"] avoids escaping the colon in id="connect:nick". */
+form.container .connect-row {
+  display: none !important;
+}
+form.container .connect-row:has(input[name="nick"]) {
+  display: block !important;
+}
+
+/* The Lounge groups extra options under <h2> headings ("User preferences",
+ * "Commands", "More options" etc.). Hide them all on the connect form. */
+form.container > h2 {
+  display: none !important;
+}
+
+/* Hide the "More options" / details disclosure if present. */
+form.container details {
+  display: none !important;
+}
+
+/* ---------- Sidebar: remove global admin affordances ---------- */
+
+/* Bottom-of-sidebar icon buttons: + add network, settings, help. */
+#sidebar button.icon.connect,
+#sidebar button.icon.settings,
+#sidebar button.icon.help,
+#footer button.icon.connect,
+#footer button.icon.settings,
+#footer button.icon.help {
+  display: none !important;
+}
+
+/* Per-channel close (×) button — keep users stuck to #hexbot. */
+#sidebar .channel button.close,
+#sidebar .lobby button.close,
+#sidebar button.close {
+  display: none !important;
+}
+
+/* ---------- Palette nudge toward hexbot.net dark grey ---------- */
+
+:root {
+  --window-bg-color: #1a1a1a;
+  --body-bg-color: #1a1a1a;
+  --background-light-color: #0f0f0f;
+  --link-color: #ff5555;
+  --highlight-border-color: #ff0000;
+  --highlight-bg-color: #330f0f;
+  --unread-marker-color: #ff5555;
+}

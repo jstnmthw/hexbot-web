@@ -1,0 +1,9 @@
+# This directory holds The Lounge's runtime state when bind-mounted via
+# docker-compose. Everything is local-only EXCEPT the custom theme under
+# themes/hexbot/, which ships with the repo and is bind-mounted into the
+# container at /var/opt/thelounge/packages/node_modules/thelounge-theme-hexbot.
+*
+!.gitignore
+!themes/
+!themes/hexbot/
+!themes/hexbot/**

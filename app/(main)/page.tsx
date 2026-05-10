@@ -109,9 +109,9 @@ export default function Home() {
         </p>
         <p className="leading-relaxed text-muted-foreground">
           To discuss HexBot with other users or get help, join{" "}
-          <a href="https://rizon.net/chat" className="text-foreground hover:underline" target="_blank" rel="noopener noreferrer">
+          <Link href="/chat" className="text-foreground hover:underline">
             #hexbot
-          </a>{" "}
+          </Link>{" "}
           on{" "}
           <a href="https://rizon.net/" className="text-foreground hover:underline" target="_blank" rel="noopener noreferrer">
             irc.rizon.net

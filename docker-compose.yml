@@ -20,3 +20,18 @@ services:
       start_period: 30s
     environment:
       - NODE_ENV=production
+
+  thelounge:
+    image: ghcr.io/thelounge/thelounge:latest
+    ports:
+      - "127.0.0.1:9000:9000"
+    restart: unless-stopped
+    volumes:
+      - ./thelounge:/var/opt/thelounge
+      - ./thelounge/themes/hexbot:/var/opt/thelounge/packages/node_modules/thelounge-theme-hexbot:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
