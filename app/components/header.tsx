@@ -7,7 +7,6 @@ const NAV_LINKS = [
   { href: "/plugins", label: "Plugins" },
   { href: "/deploy", label: "Deploy" },
   { href: "/news", label: "News" },
-  { href: "/chat", label: "Chat" },
   {
     href: "https://github.com/jstnmthw/hexbot",
     label: "GitHub",

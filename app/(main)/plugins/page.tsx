@@ -5,7 +5,7 @@ import InlineCode from "../../components/inline-code";
 
 export const metadata: Metadata = {
   title: "Extend Your Bot with Plugins",
-  description: "Browse HexBot's 9 bundled plugins: ai-chat, channel moderation, flood protection, greeter, seen, topic, help, CTCP, and 8ball. Hot-reloadable and auto-discovered.",
+  description: "Browse HexBot's 11 bundled plugins: ai-chat, channel moderation, flood protection, greeter, seen, topic, help, CTCP, 8ball, RSS, and spotify-radio. Live enable/disable via the settings registry.",
   alternates: { canonical: "/plugins" },
 };
 
@@ -55,6 +55,13 @@ const PLUGINS = [
     notes: "Warns if topic exceeds 390-char server limit. Per-user preview cooldown (60s).",
   },
   {
+    name: "rss",
+    tagline: "Feed polling and announcements",
+    description: "Polls RSS/Atom feeds and announces new items to the configured channel. SHA-1 dedup via the KV store, first-run silent seeding so existing items don't flood on boot, and SSRF defense in depth (HTTPS-only, RFC1918 blocking, byte cap, DOCTYPE rejection).",
+    commands: ["!rss list", "!rss add <url>", "!rss remove <url>", "!rss check"],
+    notes: "Manual `!rss check` honors the per-feed circuit breaker. `max_feeds` defaults to 100; ships disabled in the example config.",
+  },
+  {
     name: "help",
     tagline: "Command help index",
     description: "Provides !help listing all available bot commands, filtered by the requesting user's permission level. Supports per-command detail and category views.",
@@ -75,6 +82,14 @@ const PLUGINS = [
     commands: ["!8ball <question>"],
     notes: "No configuration required.",
   },
+  {
+    name: "spotify-radio",
+    tagline: "Operator-DJ session announcer",
+    description:
+      "Announces the operator's currently-playing Spotify track to a channel and rebroadcasts a Jam share link so listeners can tune in. Strict URL allowlist (canonical socialsession URLs, opt-in vanity domain), in-memory refresh-token rotation, and NickServ ACC verification on every mutating command.",
+    commands: ["!radio on <jam-url>", "!radio off", "!radio", "!listen"],
+    notes: "Owner-gated on/off. `pnpm run spotify:auth` handles the one-time OAuth flow. `announce_prefix` configurable via `.set spotify-radio announce_prefix \"[FM]\"`.",
+  },
 ];
 
 export default function Plugins() {
@@ -83,11 +98,11 @@ export default function Plugins() {
       <section className="space-y-2">
         <h1 className="text-foreground text-lg">Plugins</h1>
         <p className="leading-relaxed text-muted-foreground">
-          HexBot ships with {PLUGINS.length} bundled plugins, auto-discovered from the <InlineCode>plugins/</InlineCode> directory. Plugins are hot-reloadable — edit the file and run{" "}
+          HexBot ships with {PLUGINS.length} bundled plugins, auto-discovered from the <InlineCode>plugins/</InlineCode> directory. Enable or disable any of them live with{" "}
           <InlineCode>
-            .reload {"<"}name{">"}
+            .set core plugins.{"<"}name{">"}.enabled true
           </InlineCode>{" "}
-          in IRC or the REPL without restarting the bot.
+          — pick up code edits with <InlineCode>.restart</InlineCode>.
         </p>
       </section>
 

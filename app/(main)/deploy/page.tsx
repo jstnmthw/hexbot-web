@@ -33,9 +33,13 @@ const REPL_COMMANDS = [
   { cmd: ".chpass <handle> <newpass>", desc: "Set or rotate a user's DCC password (REPL/DCC only)" },
   { cmd: ".chanset / .chaninfo", desc: "Per-channel plugin settings" },
   { cmd: ".binds [plugin]", desc: "List active event binds" },
-  { cmd: ".plugins / .load / .unload / .set", desc: "Plugin management" },
+  { cmd: ".plugins", desc: "List loaded plugins and their status" },
+  { cmd: ".set <scope> <key> <value>", desc: "Live config write — core, plugin:<id>, or chanset scope" },
+  { cmd: ".unset <scope> <key>", desc: "Revert a setting to its default" },
+  { cmd: ".info <scope>", desc: "Show all settings for a scope" },
+  { cmd: ".rehash [scope]", desc: "Reload config from disk into the live registry" },
   { cmd: ".reset <plugin>", desc: "Restore a plugin's settings to defaults" },
-  { cmd: ".restart", desc: "Restart the bot process" },
+  { cmd: ".restart", desc: "Restart the bot process (picks up code edits)" },
   { cmd: ".modlog [filter...]", desc: "Query the moderation audit log (DCC/REPL only)" },
   { cmd: ".audit-tail [filter...]", desc: "Stream audit:log events live (REPL only)" },
 ];
@@ -87,7 +91,9 @@ pnpm dev            # development, with interactive REPL`}</Terminal>
         <div className="space-y-4">
           <div>
             <p className="mb-1 text-sm font-semibold text-foreground">config/bot.json</p>
-            <p className="mb-2 text-muted-foreground">IRC server, credentials, owner hostmask, services (NickServ/SASL), queue rate, DCC settings, SOCKS5 proxy, and logging level.</p>
+            <p className="mb-2 text-muted-foreground">
+              IRC server, services (NickServ/SASL), queue rate, DCC settings, SOCKS5 proxy, and logging level. Owner, DB path, and plugin directory are bootstrap env vars now: <InlineCode>HEX_OWNER_HANDLE</InlineCode>, <InlineCode>HEX_OWNER_HOSTMASK</InlineCode>, <InlineCode>HEX_DB_PATH</InlineCode>, <InlineCode>HEX_PLUGIN_DIR</InlineCode>.
+            </p>
             <Terminal title="config/bot.json">{`{
   "irc": {
     "host": "irc.rizon.net",
@@ -96,7 +102,6 @@ pnpm dev            # development, with interactive REPL`}</Terminal>
     "nick": "HexBot",
     "channels": ["#hexbot"]
   },
-  "owner": { "handle": "admin", "hostmask": "*!ident@your.host" },
   "services": { "type": "anope", "sasl": true, "sasl_mechanism": "PLAIN" },
   "dcc": { "enabled": false, "port_range": [49152, 49171] },
   "proxy": { "enabled": false, "host": "127.0.0.1", "port": 9050 }
@@ -145,9 +150,23 @@ pnpm dev            # development, with interactive REPL`}</Terminal>
       </Step>
 
       <Step n={6} title="Applying Plugin Changes">
-        <p className="mb-2 text-muted-foreground">Edit a plugin file, then apply the change persistently without restarting the bot:</p>
-        <Terminal title="set">{`# In the REPL or DCC console, run:
-.set chanmod`}</Terminal>
+        <p className="mb-2 text-muted-foreground">
+          v0.6.0 retired <InlineCode>.load</InlineCode> / <InlineCode>.unload</InlineCode> / <InlineCode>.reload</InlineCode> — the ESM cache-busting they relied on leaked module-graph entries. Plugin lifecycle is now driven through the live settings registry, with <InlineCode>.restart</InlineCode> as the canonical &ldquo;pick up code edits&rdquo; path.
+        </p>
+        <Terminal title="repl">{`# Enable or disable a plugin live (no restart):
+.set core plugins.chanmod.enabled true
+.set core plugins.chanmod.enabled false
+
+# Tweak a plugin setting at runtime:
+.set plugin:chanmod auto_op true
+.unset plugin:chanmod auto_op       # revert to default
+.info plugin:chanmod                # show all settings
+
+# Pull edits from disk back into the live registry:
+.rehash
+
+# Pick up code edits to a plugin file:
+.restart`}</Terminal>
       </Step>
     </div>
   );

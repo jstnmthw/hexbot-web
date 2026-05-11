@@ -6,7 +6,7 @@ import InlineCode from "../../components/inline-code";
 
 export const metadata: Metadata = {
   title: "Changelog & Latest Updates",
-  description: "HexBot release notes and roadmap. A timeline of every release — ai-chat, BOTLINK hardening, audit logging, bot linking, plugin bundling, and the initial framework.",
+  description: "HexBot release notes and roadmap. A timeline of every release — live config registry, spotify-radio, ai-chat, BOTLINK hardening, audit logging, bot linking, plugin bundling, and the initial framework.",
   alternates: { canonical: "/news" },
 };
 
@@ -37,6 +37,67 @@ const SECTION_LABELS: Record<SectionKind, string> = {
 };
 
 const RELEASES: Release[] = [
+  {
+    version: "0.6.0",
+    date: "2026-05-11",
+    display: "May 11, 2026",
+    title: "Live Config, Audit Closures & Clean-Cut Plugin API",
+    summary:
+      "v0.6.0 retires the leak-prone `.load` / `.unload` / `.reload` plugin lifecycle in favour of a three-scope live settings registry (`core`, `plugin:<id>`, `chanset`), folds `.helpset` into a unified help corpus, lands the `spotify-radio` plugin, and closes a 2026-05-10 stability audit (3 CRITICAL + 89 WARNING + 55 INFO) and security audit (1 CRITICAL + 28 WARNING).",
+    sections: [
+      {
+        kind: "breaking",
+        items: [
+          { title: "`.load` / `.unload` / `.reload` removed", body: "plugin enable/disable now flows through `.set core plugins.<id>.enabled true|false`; `.restart` is the canonical path for picking up code edits. The cache-busting import path that powered `.reload` is deleted — Node ESM has no eviction API, and every cache-busted re-import minted a permanent module-graph entry." },
+          { title: "`database`, `pluginDir`, `owner.handle`, `owner.hostmask` removed from `bot.json`", body: "they are bootstrap env vars now: `HEX_DB_PATH`, `HEX_PLUGIN_DIR`, `HEX_OWNER_HANDLE`, `HEX_OWNER_HOSTMASK`. The strict-object schema rejects legacy files with a hint pointing at the env var to set." },
+          { title: "`api.config` removed from PluginAPI", body: "every shipped plugin migrated to `api.settings` — typed defs via `api.settings.register([...])` and reads via `getString` / `getInt` / `getFlag`. Deeply-nested config falls back to `api.settings.bootConfig`." },
+          { title: "`.helpset` removed", body: "folded into `.help set <scope> [<key>]` against a unified `HelpRegistry` corpus indexed across core commands, plugin commands, and all three settings scopes." },
+          { title: "`plugin-load` / `plugin-unload` / `plugin-reload` mod_log action strings retired", body: "historical rows remain queryable; new rows use `coreset-set` / `pluginset-set` / `chanset-set` / `rehash` / `restart`." },
+        ],
+      },
+      {
+        kind: "added",
+        display: "tiles",
+        items: [
+          { title: "spotify-radio plugin", body: "announces the operator's currently-playing Spotify track to a channel and rebroadcasts a Jam share link. Strict URL allowlist, in-memory refresh-token rotation, NickServ ACC verification on every mutating command. `pnpm run spotify:auth` for the one-time OAuth flow." },
+          { title: "Three-scope settings registry", body: "generalises the per-channel `chanset` pattern to `core` (bot-wide live config), `plugin:<id>`, and `chanset`. KV-canonical-after-first-boot: `bot.json` / `plugins.json` are first-run seeds, operator `.set` / `.unset` / `.rehash` writes win." },
+          { title: "`.set` / `.unset` / `.info` / `.rehash` / `.restart`", body: "unified live-config commands. Audit attribution flows through `auditActor(ctx)` so REPL / IRC / DCC / botlink-relay all converge on the same `mod_log` shape." },
+          { title: "Reload-class metadata", body: "every schema field annotated with `@reload:live|reload|restart`; `.set` echoes the class as a hint — `(applied live)` / `(applied; subsystem reloaded)` / `(stored; takes effect after .restart)`." },
+          { title: "`PluginAPI.coreSettings` + `PluginAPI.settings`", body: "read-only view of bot-wide settings and read/write own plugin scope. `api.settings.bootConfig` exposes a frozen merged JSON snapshot for config that doesn't flatten to typed settings." },
+          { title: "Unified `HelpRegistry` corpus", body: "strict prefix-preserving identifiers with a fuzzy fallback for bare `!help ban` lookups. `.help` index is permission-filtered for unprivileged DCC/IRC users; REPL and botlink remain unfiltered." },
+          { title: "Bounded channel-join retry", body: "channels failing JOIN with permanent-error numerics (+b/+i/+k/+r) walk a configurable backoff schedule (default 5/15/45 min) instead of being stuck until reconnect." },
+          { title: "Per-plugin bind cap (warn 500 / hard 1000)", body: "closes a memleak finding around plugins that bind without ever unbinding; `bindsByPlugin` tally in the dispatcher." },
+          { title: "Healthcheck split", body: "separate liveness (`/tmp/.hexbot-alive`) and readiness (`/tmp/.hexbot-connected`) sentinels distinguish process-wedged from IRC-unreachable." },
+        ],
+      },
+      {
+        kind: "changed",
+        items: [
+          { title: "`src/bot.ts` split into focused modules", body: "-26% LOC with no behavior change; core settings defs co-locate their `onChange` handlers, kv-maintenance and audit-fallback become small classes, `connect()` / `start()` / `shutdown()` reshaped into named phases." },
+          { title: "Public `types/` `.d.ts` synced with runtime API", body: "plugin authors relying on public declarations for IDE autocomplete were missing `audit`, `util`, `settings`, `coreSettings`, `banStore` and half the recent additions to `PluginAPI` / `HandlerContext` / `ChannelState`." },
+          { title: "Plugin example configs minimised", body: "every key whose value the plugin's own schema already supplies is removed; only operator-required and security-relevant keys remain. ai-chat and rss flip to `enabled: false` so the example doesn't auto-post on first boot." },
+        ],
+      },
+      {
+        kind: "fixed",
+        items: [
+          { title: "2026-05-10 stability audit", body: "3 CRITICAL + 89 WARNING + 55 INFO closed. Every mutating IRC verb now flows through the message queue (chanmod recovery storms can't trip Excess Flood); fatal SQLite errors hand control to `bot.shutdown()` instead of bypassing teardown via `process.exit(2)`; `ensureChannel` stops growing unboundedly under stray TOPIC / RPL_CHANNELMODEIS." },
+          { title: "STS upgrade plaintext-leak window", body: "`messageQueue.clear()` now fires BEFORE `client.quit()` on STS upgrade so the close-time `flushWithDeadline(100)` can't drain queued PRIVMSGs (potentially containing `.adduser` password material or plugin tokens) over plaintext between upgrade decision and TLS reconnect." },
+          { title: "2026-05-10 security audit", body: "1 CRITICAL + 28 WARNING closed. Deep-freeze `identity.require_acc_for` and `bootConfig` so a plugin can't disable NickServ verification bot-wide; `api.say` / `notice` / `action` route through `splitMessage` + target sanitize; STS rejects duration-only directives over plaintext; `.ban` / `.unban` thread `auditActor` so exactly one `mod_log` row attributes to the caller." },
+          { title: "`importWithCacheBust` ESM-cache leak resolved by deletion", body: "`load()` uses a plain `await import(pathToFileURL(absPath).href)`; `importedOnce`, `reload(name)`, and the `plugin:reloaded` / `plugin:reload_failed` events are gone." },
+          { title: "`kv` VACUUM spam from 32-bit `setInterval` overflow", body: "the 30-day delay (2.59 × 10⁹ ms) exceeded Node's `TIMEOUT_MAX` (~24.8 days), which clamps to 1 ms and fires continuously on startup. VACUUM folds into the daily maintenance handler with an elapsed-time check." },
+          { title: "First-boot plugin double-load race", body: "seeding `core.plugins.<id>.enabled` into KV pre-load fired the `onChange` listener, which fire-and-forgets `applyPluginEnabled()` and raced the awaited main load loop. Seed moves to after the loop where `applyPluginEnabled` is idempotent." },
+          { title: "Memleak audit closure", body: "caps on `pendingHandshakes` (4096), `SharedBanList` distinct channels (1024), `RelayOrchestrator` virtual sessions (64/leaf), and flood `channelActionRate` (1024 keys, oldest-by-insertion eviction); timers stored in fields and cleared on teardown; DCC / `IRCBridge.attach()` / `Logger.addSinkByOwner` listener lifecycles made symmetric." },
+        ],
+      },
+      {
+        kind: "removed",
+        items: [
+          { title: "Closed audit documents", body: "`docs/audits/stability-all-2026-05-10.md` and friends deleted after every finding was resolved; commit history retains the reasoning." },
+        ],
+      },
+    ],
+  },
   {
     version: "0.5.0",
     date: "2026-04-25",

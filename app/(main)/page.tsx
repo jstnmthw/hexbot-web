@@ -108,11 +108,7 @@ export default function Home() {
           to extend your bot.
         </p>
         <p className="leading-relaxed text-muted-foreground">
-          To discuss HexBot with other users or get help, join{" "}
-          <Link href="/chat" className="text-foreground hover:underline">
-            #hexbot
-          </Link>{" "}
-          on{" "}
+          To discuss HexBot with other users or get help, join <strong className="text-foreground">#hexbot</strong> on{" "}
           <a href="https://rizon.net/" className="text-foreground hover:underline" target="_blank" rel="noopener noreferrer">
             irc.rizon.net
           </a>

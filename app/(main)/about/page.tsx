@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const FEATURES = [
-  { label: "Modular plugins", detail: "Load, unload, and hot-reload without restarting" },
+  { label: "Modular plugins", detail: "Live enable/disable via .set, in-place edits via .restart" },
   { label: "Flag-based permissions", detail: "Owner, master, op, voice, deop — per-channel and global" },
   { label: "Bind system", detail: "16 event types, pattern-matched triggers" },
   { label: "SASL authentication", detail: "PLAIN and EXTERNAL (CertFP) support" },
