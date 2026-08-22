@@ -22,13 +22,13 @@ function Step({ n, title, children }: { n: number; title: string; children: Reac
 }
 
 const REPL_COMMANDS = [
-  { cmd: ".help [cmd]", desc: "List commands or show detail for one" },
+  { cmd: ".help [topic] [cmd]", desc: "Services-style topic index with per-command drill-down" },
   { cmd: ".status", desc: "Connection info, uptime, bind and user counts" },
   { cmd: ".uptime", desc: "One-line uptime report" },
   { cmd: ".say <target> <msg>", desc: "Send a message to a channel or user" },
   { cmd: ".msg <target> <msg>", desc: "Send a PRIVMSG to any target" },
   { cmd: ".join / .part", desc: "Join or part a channel" },
-  { cmd: ".flags [handle] [+flags [#chan]]", desc: "View or set user flags" },
+  { cmd: ".flags [handle] [±flags [#chan]]", desc: "View or adjust user flags (eggdrop-style +/- deltas)" },
   { cmd: ".adduser / .deluser / .users", desc: "User management" },
   { cmd: ".chpass <handle> <newpass>", desc: "Set or rotate a user's DCC password (REPL/DCC only)" },
   { cmd: ".chanset / .chaninfo", desc: "Per-channel plugin settings" },
@@ -64,11 +64,15 @@ export default function Deploy() {
         <p className="mb-2 leading-relaxed text-muted-foreground">The recommended deployment method. Plugins, config, and data are mounted from the host so you can edit and reload without rebuilding the image.</p>
         <Terminal title="bash">{`git clone https://github.com/jstnmthw/hexbot
 cd hexbot
+cp docker-compose.example.yml docker-compose.yml
 cp config/bot.example.json config/bot.json
 cp config/plugins.example.json config/plugins.json
 # edit config/bot.json with your IRC server and credentials
 docker compose up -d
 docker compose logs -f`}</Terminal>
+        <p className="mt-2 text-xs text-muted-foreground">
+          As of v0.7.0 the repo ships <InlineCode>docker-compose.example.yml</InlineCode> — your local <InlineCode>docker-compose.yml</InlineCode> (and any other <InlineCode>docker-compose.*.yml</InlineCode> variant) is git-ignored, so personal overrides stay untracked.
+        </p>
         <p className="mt-2 text-xs text-muted-foreground">
           DCC CHAT ports <strong className="text-neutral-400">49152-49171</strong> are exposed by default.
         </p>

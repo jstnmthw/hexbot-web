@@ -6,7 +6,7 @@ import InlineCode from "../../components/inline-code";
 
 export const metadata: Metadata = {
   title: "Changelog & Latest Updates",
-  description: "HexBot release notes and roadmap. A timeline of every release — live config registry, spotify-radio, ai-chat, BOTLINK hardening, audit logging, bot linking, plugin bundling, and the initial framework.",
+  description: "HexBot release notes and roadmap. A timeline of every release — services-style help, delta flags, live config registry, spotify-radio, ai-chat, BOTLINK hardening, audit logging, bot linking, plugin bundling, and the initial framework.",
   alternates: { canonical: "/news" },
 };
 
@@ -37,6 +37,43 @@ const SECTION_LABELS: Record<SectionKind, string> = {
 };
 
 const RELEASES: Release[] = [
+  {
+    version: "0.7.0",
+    date: "2026-08-22",
+    display: "August 22, 2026",
+    title: "Services-Style Help, Delta Flags & the July Leak Sweep",
+    summary:
+      "v0.7.0 redesigns `.help` / `!help` in ChanServ services style with topic drill-down, makes `.flags` apply eggdrop-style deltas instead of replacing the whole flag string, closes every finding from the 2026-07-12 memleak audit — including a remotely-triggerable pre-auth botlink OOM — and lands a round of production fixes for reconnect, botlink sync, and auto-op races.",
+    sections: [
+      {
+        kind: "breaking",
+        items: [
+          { title: "`.flags` specs are now eggdrop-style deltas", body: "`+` adds, `-` removes, sections apply left to right, and unknown letters are rejected. Previously the spec replaced the whole flag string (`.flags self +d` wiped `+n`) and `-v` actually granted `v`. The owner-escalation guard now compares current-vs-resulting `n`/`m` membership, and a last-owner guard refuses removing `+n` from the only owner." },
+          { title: "`docker-compose.yml` renamed to `docker-compose.example.yml`", body: "copy it to `docker-compose.yml` and edit locally; all `docker-compose.*.yml` variants except the example are git-ignored, so personal overrides stay untracked." },
+          { title: "ai-chat: `min_users` and `interests` removed", body: "both ambient config knobs were parsed but never read by the AmbientEngine. Delete them from your ai-chat plugin config if present." },
+        ],
+      },
+      {
+        kind: "changed",
+        items: [
+          { title: "Help redesigned in ChanServ services style", body: "the index lists uppercased topics with aligned blurbs, commands live one level down in the topic view, and per-command detail uses the `Syntax:` / description / `Requires:` shape. New drill-downs: `.help <topic> <command>` and `.help set <scope> <group>`. A shared formatting service keeps `.help` and `!help` output identical." },
+          { title: "Docker healthcheck simplified to a presence check", body: "the old 120s mtime-freshness window falsely reported a stably-connected container unhealthy." },
+          { title: "Ollama fetch-failure errors name the target URL", body: "instead of Node's bare `fetch failed`, while still classifying as retryable network errors." },
+        ],
+      },
+      {
+        kind: "fixed",
+        items: [
+          { title: "2026-07-12 memleak audit — all findings closed", body: "highlights: a remotely-triggerable pre-auth botlink OOM (un-terminated lines grew the buffer without bound — a socket-level byte-count guard now destroys them at the 4 KB pre-handshake cap and feeds the auto-ban tracker); outbound flow control disconnects peers whose write buffer exceeds 4 MB; bounded caps and sweeps across `networkAccounts`, DCC sessions, dispatcher binds, and the ai-chat / chanmod / flood / rss plugins." },
+          { title: "Reconnect channel-tracking deadlock", body: "the `disconnecting` window opened by `clearAllChannels()` never closed after a reconnect, so every new-session JOIN/NAMES was dropped and channel tracking stayed dead until restart. The flag now resets on `registered`." },
+          { title: "Botlink hub sync wiped leaf password hashes", body: "`syncUser()` replaced records wholesale while sync frames never carry hashes, so every sync erased the leaf's local hash and DCC logins were rejected. The existing hash now carries across; hashes still never travel over the wire." },
+          { title: "Auto-op double-grant race", body: "services emits `user:identified` before `verifyUser()` resolves, so every NickServ-verified auto-op landed twice. `grantMode()` now takes a per-`channel|nick` in-flight guard." },
+          { title: "Stale pending DCC offers replaced on retry", body: "instead of denied — the old offer's token could no longer complete anyway. `attach()` now warns when `dcc.ip` isn't a valid IPv4 address." },
+          { title: "`plugins.json` overrides preserved on re-enable", body: "`.set core plugins.<id>.enabled true` reloaded with no config, silently falling back to on-disk defaults (wrong provider/model/channels). The loader now re-reads `plugins.json` and passes the merged config." },
+        ],
+      },
+    ],
+  },
   {
     version: "0.6.0",
     date: "2026-05-11",

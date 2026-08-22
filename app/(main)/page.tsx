@@ -53,7 +53,7 @@ export default function Home() {
         <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm">
           <div>
             <strong className="text-foreground">Modular plugins</strong>
-            <span className="text-muted-foreground"> — hot-reload without restarting</span>
+            <span className="text-muted-foreground"> — live enable/disable via .set</span>
           </div>
           <div>
             <strong className="text-foreground">Flag permissions</strong>

@@ -63,10 +63,10 @@ const PLUGINS = [
   },
   {
     name: "help",
-    tagline: "Command help index",
-    description: "Provides !help listing all available bot commands, filtered by the requesting user's permission level. Supports per-command detail and category views.",
-    commands: ["!help", "!help <command>", "!help <category>"],
-    notes: "Configurable reply type (PRIVMSG, NOTICE, channel_notice). Per-user cooldown on full list.",
+    tagline: "Services-style help index",
+    description: "Provides !help in ChanServ services style — an index of uppercased topics with aligned blurbs, commands one level down in the topic view, and per-command detail in Syntax / description / Requires shape. Filtered by the requesting user's permission level.",
+    commands: ["!help", "!help <topic>", "!help <topic> <command>"],
+    notes: "Configurable reply type (PRIVMSG, NOTICE, channel_notice). Per-user cooldown on full list. Shares one formatting service with .help so both transports emit identical output.",
   },
   {
     name: "ctcp",
