@@ -6,7 +6,7 @@ import InlineCode from "../../components/inline-code";
 
 export const metadata: Metadata = {
   title: "Changelog & Latest Updates",
-  description: "HexBot release notes and roadmap. A timeline of every release — services-style help, delta flags, live config registry, spotify-radio, ai-chat, BOTLINK hardening, audit logging, bot linking, plugin bundling, and the initial framework.",
+  description: "HexBot release notes and roadmap. A timeline of every release — the August security audit remediation, hostmask management commands, flood limiting on by default, services-style help, delta flags, live config registry, spotify-radio, ai-chat, BOTLINK hardening, audit logging, bot linking, plugin bundling, and the initial framework.",
   alternates: { canonical: "/news" },
 };
 
@@ -37,6 +37,45 @@ const SECTION_LABELS: Record<SectionKind, string> = {
 };
 
 const RELEASES: Release[] = [
+  {
+    version: "0.7.1",
+    date: "2026-08-23",
+    display: "August 23, 2026",
+    title: "Security Audit Remediation",
+    summary:
+      "v0.7.1 closes every finding from the 2026-08-23 security audit — critical, warning, and info — headlined by hard identity gating on chanmod re-op paths, secret redaction across all log sinks, and botlink hub-side re-verification of relayed commands. It also adds `.addhost` / `.delhost` for hostmask management and turns input flood limiting on by default.",
+    sections: [
+      {
+        kind: "added",
+        items: [
+          { title: "`.addhost` / `.delhost`", body: "add or remove hostmasks on an existing user record, with `mod_log` attribution." },
+          { title: "`mode()` / `api.mode()` accept a trailing `actor`", body: "so plugin-initiated mode changes attribute to the triggering user in `mod_log`." },
+          { title: "Scoped `api.help.*` namespace", body: "the help plugin no longer value-imports from `src/` at runtime, backed by a new ESLint rule blocking value imports from `src/` in all plugins." },
+        ],
+      },
+      {
+        kind: "changed",
+        items: [
+          { title: "Input flood limiting defaults on", body: "an omitted `flood` config block now applies `FLOOD_DEFAULTS` instead of disabling limiting; `bot.example.json` ships an explicit `flood` block." },
+          { title: "SASL credential fatals exit on first hit", body: "while cert/DNS failures keep the retry budget. Startup warns when `services_host_pattern` is empty — it's now a valid `bot.json` key, and the example ships a concrete services host." },
+        ],
+      },
+      {
+        kind: "fixed",
+        items: [
+          { title: "Critical: chanmod identity gating on re-op paths", body: "mass re-op and reactive `-o/-h/-v` re-enforcement route through the same hard identity gate as the auto-op join path, and channel-state account names thread into `findByHostmask` — a nick-squatter on a weak hostmask can no longer be re-opped on hostmask alone during recovery." },
+          { title: "Critical: secret redaction across all sinks", body: "`.chpass` and other secret-bearing commands are redacted before the REPL log, botnet announce, and `mod_log` writes via a shared secret-commands module; botlink relay redaction sources the same set." },
+          { title: "Critical: botlink hub re-checks relayed command flags", body: "against its authoritative permission DB before forwarding a cross-leaf CMD, refusing unknown or under-privileged commands instead of blind-forwarding." },
+          { title: "Permissions & identity fail closed", body: "flag verification rejects unknown flag chars, `.flags` owner-guard resolves the caller by account-aware handle, channel-scoped `.flags` no longer silently applies globally, DCC command auth keys on the scrypt-authenticated handle instead of hostmask, and `services.verifyUser` fails closed on `type:'none'`." },
+          { title: "DCC hardening", body: "auth lockout keys on handle / ident@host so nick rotation can't reset backoff, socket input is stripped of mIRC and control bytes before dispatch, the passive-offer listener is capped at one connection, and awaiting-password sessions count toward `max_sessions`." },
+          { title: "Injection and output sanitization", body: "a shared guard protects KICK/INVITE/JOIN/TOPIC/MODE positional params, account tags are sanitized at extraction, command words and logged user args are stripped of IRC formatting and control bytes on all transports, and command flood keys on ident@host." },
+          { title: "Botlink", body: "cross-leaf CMD replies are bound to the leaf the request was sent to, so a compromised leaf can't resolve another leaf's pending command; IPv6 literals are normalized, banned peers stay near-zero cost, and `pass` / `link_salt` are redacted in logs." },
+          { title: "chanmod & flood enforcement precision", body: "`$a:` account pinning holds on reactive enforcement, `enforcebans` gains a mask-specificity floor and never kicks opped, voiced, or flagged members, and flood enforcement pins the offender's hostmask so a bystander who takes over a vacated nick is never punished." },
+          { title: "Config & secrets hygiene", body: "env-file permission checks sweep the whole config tree plus `HEX_ENV_FILE`, plugin load warns on inline secret-shaped config values lacking an `_env` sibling, and `.say` / `.msg` reject comma multi-target and leading-colon targets." },
+        ],
+      },
+    ],
+  },
   {
     version: "0.7.0",
     date: "2026-08-22",

@@ -30,6 +30,7 @@ const REPL_COMMANDS = [
   { cmd: ".join / .part", desc: "Join or part a channel" },
   { cmd: ".flags [handle] [±flags [#chan]]", desc: "View or adjust user flags (eggdrop-style +/- deltas)" },
   { cmd: ".adduser / .deluser / .users", desc: "User management" },
+  { cmd: ".addhost / .delhost", desc: "Add or remove hostmasks on an existing user record" },
   { cmd: ".chpass <handle> <newpass>", desc: "Set or rotate a user's DCC password (REPL/DCC only)" },
   { cmd: ".chanset / .chaninfo", desc: "Per-channel plugin settings" },
   { cmd: ".binds [plugin]", desc: "List active event binds" },
@@ -106,7 +107,7 @@ pnpm dev            # development, with interactive REPL`}</Terminal>
     "nick": "HexBot",
     "channels": ["#hexbot"]
   },
-  "services": { "type": "anope", "sasl": true, "sasl_mechanism": "PLAIN" },
+  "services": { "type": "anope", "sasl": true, "sasl_mechanism": "PLAIN", "services_host_pattern": "NickServ!*@services.rizon.net" },
   "dcc": { "enabled": false, "port_range": [49152, 49171] },
   "proxy": { "enabled": false, "host": "127.0.0.1", "port": 9050 }
 }`}</Terminal>
